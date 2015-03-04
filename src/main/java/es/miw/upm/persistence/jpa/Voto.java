@@ -27,17 +27,13 @@ public class Voto {
     
     public Voto(){}
 
-    public Voto(Integer id, String ip, Tema tema) {
-        this.idVoto = id;
+    public Voto(String ip, Tema tema, NivelEstudiosType nivel) {
         this.ip = ip;
         this.tema = tema;
+        this.nivelEstudios = nivel;
     }
     public Integer getIdVoto() {
 		return idVoto;
-	}
-
-	public void setIdVoto(Integer idVoto) {
-		this.idVoto = idVoto;
 	}
 
 	public String getIp() {
@@ -67,6 +63,6 @@ public class Voto {
 	@Override
     public String toString() {
         return "Vehicle [id=" + idVoto+  ", ip=" + ip + 
-        	 "nivelEstudios=" +nivelEstudios +", temaId=" + tema.getId() + "]";
+        	 "nivelEstudios=" +nivelEstudios +", temaId=" + tema.getIdTema() + "]";
     }
 }

@@ -2,10 +2,17 @@ package es.miw.upm.persistence.jpa;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import es.miw.upm.persistence.model.utils.NivelEstudiosType;
+
 
 @Entity
 public class Tema {
@@ -14,7 +21,7 @@ public class Tema {
 
 	private String nombre;
 	private String pregunta;
-	//@OneToMany(cascade = CascadeType.ALL, mappedBy = "tema")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tema")
 	private List<Voto> votos;
 	public Tema(){
 		super();
@@ -25,12 +32,12 @@ public class Tema {
 		this.nombre = nombre;
 		this.pregunta = pregunta;
 	}
-	public Integer getId() {
+	public Integer getIdTema() {
 		return this.idTema;
 	}
 
-	public void setId(Integer id) {
-		this.idTema = id;
+	public void setIdTema(Integer idTema) {
+		this.idTema = idTema;
 	}
 
 	public String getNombre() {
@@ -51,14 +58,35 @@ public class Tema {
 		return votos;
 	}
 
-	public void setVehicles(List<Voto> votos) {
+	public void setVotos(List<Voto> votos) {
 		this.votos = votos;
 	}
-	
+
 	@Override
-    public String toString() {
-        return "Tema [id=" + idTema + ", nombre=" + nombre + ", votos=" + votos + "]";
-    }
+	public String toString() {
+		return "Tema [id=" + idTema + ", nombre=" + nombre + ", votos=" + votos + "]";
+	}
+	public static void main(String[] args) {
+
+		JpaFactory.dropAndCreateTables();
+		EntityManager em = JpaFactory.getEntityManagerFactory().createEntityManager();
+		Tema tema1 = new Tema(1, "RollingStones", "¿Como puntuarias a los RollingStones?");
+		Tema tema2 = new Tema(2, "Muse", "¿Como puntuarias a Muse en directo?");
+
+		List<Voto> votos = new ArrayList<Voto>();
+		votos.add(new Voto("100.20.2.2", tema1, NivelEstudiosType.BASICO));
+		votos.add(new Voto("100.20.2.5", tema1, NivelEstudiosType.INTERMEDIO));
+		tema1.setVotos(votos);
+		// Create
+		em.getTransaction().begin();
+		em.persist(tema1);
+		em.persist(tema2);
+		em.getTransaction().commit();
+		// find
+		System.out.println(em.find(Tema.class, 1));
+		System.out.println(em.find(Tema.class, 2));
+		System.out.println(em.find(Tema.class, 3));
+	}
 
 
 }
