@@ -5,6 +5,7 @@
 	<persistence-unit name="Votacion" transaction-type="RESOURCE_LOCAL"> <!-- nombre de las bases de datos -->
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>pruebas.User1</class>
+		<class>pruebas.Phone2</class>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="none" /> <!--drop-and-create-tables none -->
 			<property name="eclipselink.logging.level" value="INFO" /> <!-- OFF,WARNING,INFO,FINE,ALL -->
