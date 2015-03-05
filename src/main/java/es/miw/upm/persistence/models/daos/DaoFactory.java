@@ -2,7 +2,7 @@ package es.miw.upm.persistence.models.daos;
 
 
 
-public class DaoFactory {
+public abstract class DaoFactory {
 	 public static DaoFactory factory = null;
 
 	    public static void setFactory(DaoFactory factory) {
