@@ -21,16 +21,18 @@ public class Tema {
 
 	private String nombre;
 	private String pregunta;
+	private Integer valorPuntuacion;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tema")
 	private List<Voto> votos;
 	public Tema(){
 		super();
 	}
-	public Tema(Integer id, String nombre, String pregunta){
+	public Tema(Integer id, String nombre, String pregunta, Integer valorPuntuacion){
 		super();
 		this.idTema = id;
 		this.nombre = nombre;
 		this.pregunta = pregunta;
+		this.valorPuntuacion = valorPuntuacion;
 	}
 	public Integer getIdTema() {
 		return this.idTema;
@@ -54,6 +56,13 @@ public class Tema {
 	public void setPregunta(String pregunta) {
 		this.pregunta = pregunta;
 	}
+	public String getValorPuntuacion() {
+		return this.pregunta;
+	}
+
+	public void setValorPuntuacion(Integer ValorPuntuacion) {
+		this.valorPuntuacion = ValorPuntuacion;
+	}
 	public List<Voto> getVotos() {
 		return votos;
 	}
@@ -70,8 +79,8 @@ public class Tema {
 
 		JpaFactory.dropAndCreateTables();
 		EntityManager em = JpaFactory.getEntityManagerFactory().createEntityManager();
-		Tema tema1 = new Tema(1, "RollingStones", "¿Como puntuarias a los RollingStones?");
-		Tema tema2 = new Tema(2, "Muse", "¿Como puntuarias a Muse en directo?");
+		Tema tema1 = new Tema(1, "RollingStones", "¿Como puntuarias a los RollingStones?",5);
+		Tema tema2 = new Tema(2, "Muse", "¿Como puntuarias a Muse en directo?",6);
 
 		List<Voto> votos = new ArrayList<Voto>();
 		votos.add(new Voto("100.20.2.2", tema1, NivelEstudiosType.BASICO));
