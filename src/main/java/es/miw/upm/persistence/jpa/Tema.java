@@ -88,6 +88,11 @@ public class Tema {
 		System.out.println(em.find(Tema.class, 1));
 		System.out.println(em.find(Tema.class, 2));
 		System.out.println(em.find(Tema.class, 3));
+		System.out.println(em.find(Tema.class, 1).getVotos().size());
+		em.getTransaction().begin();
+		em.remove(em.find(Tema.class, 1));
+		em.getTransaction().commit();
+		System.out.println(em.find(Tema.class, 1));
 	}
 
 

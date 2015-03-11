@@ -1,5 +1,7 @@
 package es.miw.upm.persistence.models.jpa;
 
+
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -7,9 +9,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import es.miw.upm.persistence.jpa.JpaFactory;
 import es.miw.upm.persistence.jpa.Tema;
 import es.miw.upm.persistence.jpa.Voto;
@@ -17,6 +19,7 @@ import es.miw.upm.persistence.model.utils.NivelEstudiosType;
 
 public class TestDAOJpa {
 	private EntityManager em;
+	private Voto voto;
 
 	@Before
 	public void init(){
@@ -24,8 +27,9 @@ public class TestDAOJpa {
 		em = JpaFactory.getEntityManagerFactory().createEntityManager();
 		Tema tema1 = new Tema(1, "RollingStones", "¿Como puntuarias a los RollingStones?",5);
 		Tema tema2 = new Tema(2, "Muse", "¿Como puntuarias a Muse en directo?",6);
-
+		voto = new Voto("100.20.2.8", tema2, NivelEstudiosType.BASICO,10);
 		List<Voto> votos = new ArrayList<Voto>();
+		votos.add(voto);
 		votos.add(new Voto("100.20.2.2", tema1, NivelEstudiosType.BASICO,3));
 		votos.add(new Voto("100.20.2.5", tema1, NivelEstudiosType.INTERMEDIO,4));
 		tema1.setVotos(votos);
@@ -37,14 +41,34 @@ public class TestDAOJpa {
 	}
 	
 	@Test
-	public void testVoto() { 
-		Tema tema = em.find(Tema.class, 1);
-		assertEquals( "1", tema.getIdTema().toString());
+	public void testCreateVoto() { 
+		assertEquals( voto.getIp(), em.find(Voto.class, voto.getIdVoto()).getIp());
+		
+	}
+	@Test
+	public void testCreateTema() { 
+		assertEquals( "1", em.find(Tema.class, 1).getIdTema().toString());
+	}
+	@Test
+	public void testNumeroVotos() { 
+		assertEquals( 2, em.find(Tema.class, 1).getVotos().size());
+	}
+	@Test
+	public void testAñadirVotos() { 
+		assertEquals( 2, em.find(Tema.class, 1).getVotos().size());
 	}
 	
 	@Test
 	public void testBorrarVoto(){
-		
-		
+		em.getTransaction().begin();
+		em.remove(em.find(Tema.class, 1));
+		em.getTransaction().commit();
+		assertNull(em.find(Tema.class, 1));
 	}
+	  @After
+	    public void after() {
+		  JpaFactory.dropAndCreateTables();
+	    }
+
+
 }

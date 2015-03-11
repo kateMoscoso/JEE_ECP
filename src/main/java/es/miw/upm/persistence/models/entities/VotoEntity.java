@@ -38,10 +38,10 @@ public class VotoEntity {
 	    @Enumerated(EnumType.STRING) // Opcional
 	    private NivelEstudiosType NivelEstudiosType;
 
-	    public static final String TEMA_ID = "TEMA_ID";
+	    public static final String ID = "TEMA_ID";
 
 	    @ManyToOne
-	    @JoinColumn(name = TEMA_ID)
+	    @JoinColumn(name = ID)
 	    private TemaEntity temaEntity;
  
 	    public VotoEntity(String ip, NivelEstudiosType nivelEstudios, Integer valor) {
