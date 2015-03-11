@@ -97,7 +97,7 @@ public class PhoneQuerys {
         CriteriaQuery<PhoneType> query = criteria.createQuery(PhoneType.class);
         Root<Phone2> rootPhone = query.from(Phone2.class);
 
-        query.select(rootPhone.get("phoneType")).distinct(true);
+//        query.select(rootPhone.get("phoneType")).distinct(true);
 
         Predicate p1 = criteria.equal(rootPhone.get("number").as(Integer.class), 666);
         Predicate p2 = criteria.gt(rootPhone.get("id"), 2);
