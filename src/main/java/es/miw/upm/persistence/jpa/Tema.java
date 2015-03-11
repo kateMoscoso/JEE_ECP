@@ -21,7 +21,6 @@ public class Tema {
 
 	private String nombre;
 	private String pregunta;
-	private Integer valorPuntuacion;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tema")
 	private List<Voto> votos;
 	public Tema(){
@@ -32,7 +31,7 @@ public class Tema {
 		this.idTema = id;
 		this.nombre = nombre;
 		this.pregunta = pregunta;
-		this.valorPuntuacion = valorPuntuacion;
+		
 	}
 	public Integer getIdTema() {
 		return this.idTema;
@@ -56,13 +55,7 @@ public class Tema {
 	public void setPregunta(String pregunta) {
 		this.pregunta = pregunta;
 	}
-	public String getValorPuntuacion() {
-		return this.pregunta;
-	}
 
-	public void setValorPuntuacion(Integer ValorPuntuacion) {
-		this.valorPuntuacion = ValorPuntuacion;
-	}
 	public List<Voto> getVotos() {
 		return votos;
 	}
@@ -83,8 +76,8 @@ public class Tema {
 		Tema tema2 = new Tema(2, "Muse", "¿Como puntuarias a Muse en directo?",6);
 
 		List<Voto> votos = new ArrayList<Voto>();
-		votos.add(new Voto("100.20.2.2", tema1, NivelEstudiosType.BASICO));
-		votos.add(new Voto("100.20.2.5", tema1, NivelEstudiosType.INTERMEDIO));
+		votos.add(new Voto("100.20.2.2", tema1, NivelEstudiosType.BASICO, 5));
+		votos.add(new Voto("100.20.2.5", tema1, NivelEstudiosType.INTERMEDIO, 6));
 		tema1.setVotos(votos);
 		// Create
 		em.getTransaction().begin();

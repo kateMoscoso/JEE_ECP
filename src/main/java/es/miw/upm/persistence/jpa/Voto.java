@@ -18,6 +18,8 @@ public class Voto {
 
 	private String ip;
 
+	private Integer valorPuntuacion;
+
     @Enumerated(EnumType.STRING)
     private NivelEstudiosType nivelEstudios ;
 
@@ -27,10 +29,11 @@ public class Voto {
     
     public Voto(){}
 
-    public Voto(String ip, Tema tema, NivelEstudiosType nivel) {
+    public Voto(String ip, Tema tema, NivelEstudiosType nivel, Integer valorPuntuacion) {
         this.ip = ip;
         this.tema = tema;
         this.nivelEstudios = nivel;
+        this.valorPuntuacion = valorPuntuacion;
     }
     public Integer getIdVoto() {
 		return idVoto;
@@ -59,10 +62,18 @@ public class Voto {
 	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
+	public Integer getValorPuntuacion() {
+		return this.valorPuntuacion;
+	}
+
+	public void setValorPuntuacion(Integer ValorPuntuacion) {
+		this.valorPuntuacion = ValorPuntuacion;
+	}
 	
 	@Override
     public String toString() {
         return "Vehicle [id=" + idVoto+  ", ip=" + ip + 
-        	 "nivelEstudios=" +nivelEstudios +", temaId=" + tema.getIdTema() + "]";
+        	 " nivelEstudios=" +nivelEstudios +", temaId=" + tema.getIdTema() + 
+        	 ", valor= " + valorPuntuacion + "]";
     }
 }
