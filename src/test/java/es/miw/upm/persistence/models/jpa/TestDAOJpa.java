@@ -25,8 +25,8 @@ public class TestDAOJpa {
 	public void init(){
 		JpaFactory.dropAndCreateTables();
 		em = JpaFactory.getEntityManagerFactory().createEntityManager();
-		Tema tema1 = new Tema(1, "RollingStones", "¿Como puntuarias a los RollingStones?",5);
-		Tema tema2 = new Tema(2, "Muse", "¿Como puntuarias a Muse en directo?",6);
+		Tema tema1 = new Tema(1, "RollingStones", "¿Como puntuarias a los RollingStones?");
+		Tema tema2 = new Tema(2, "Muse", "¿Como puntuarias a Muse en directo?");
 		voto = new Voto("100.20.2.8", tema2, NivelEstudiosType.BASICO,10);
 		List<Voto> votos = new ArrayList<Voto>();
 		votos.add(voto);
@@ -42,7 +42,7 @@ public class TestDAOJpa {
 	
 	@Test
 	public void testCreateVoto() { 
-		assertEquals( voto.getIp(), em.find(Voto.class, voto.getIdVoto()).getIp());
+		assertEquals( "100.20.2.8", em.find(Voto.class, voto.getIdVoto()).getIp());
 		
 	}
 	@Test
