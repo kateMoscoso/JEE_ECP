@@ -26,7 +26,7 @@ public class Tema {
 	public Tema(){
 		super();
 	}
-	public Tema(Integer id, String nombre, String pregunta, Integer valorPuntuacion){
+	public Tema(Integer id, String nombre, String pregunta){
 		super();
 		this.idTema = id;
 		this.nombre = nombre;
@@ -72,8 +72,8 @@ public class Tema {
 
 		JpaFactory.dropAndCreateTables();
 		EntityManager em = JpaFactory.getEntityManagerFactory().createEntityManager();
-		Tema tema1 = new Tema(1, "RollingStones", "¿Como puntuarias a los RollingStones?",5);
-		Tema tema2 = new Tema(2, "Muse", "¿Como puntuarias a Muse en directo?",6);
+		Tema tema1 = new Tema(1, "RollingStones", "¿Como puntuarias a los RollingStones?");
+		Tema tema2 = new Tema(2, "Muse", "¿Como puntuarias a Muse en directo?");
 
 		List<Voto> votos = new ArrayList<Voto>();
 		votos.add(new Voto("100.20.2.2", tema1, NivelEstudiosType.BASICO, 5));

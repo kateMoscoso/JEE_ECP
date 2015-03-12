@@ -42,12 +42,12 @@ public class TestDAOJpa {
 	
 	@Test
 	public void testCreateVoto() { 
-		assertEquals( "100.20.2.8", em.find(Voto.class, voto.getIdVoto()).getIp());
+		assertEquals( "10", em.find(Voto.class, voto.getIdVoto()).getValorPuntuacion().toString());
 		
 	}
 	@Test
 	public void testCreateTema() { 
-		assertEquals( "1", em.find(Tema.class, 1).getIdTema().toString());
+		assertEquals( "RollingStones", em.find(Tema.class, 1).getIdTema());
 	}
 	@Test
 	public void testNumeroVotos() { 
@@ -68,6 +68,7 @@ public class TestDAOJpa {
 	  @After
 	    public void after() {
 		  JpaFactory.dropAndCreateTables();
+		  em.
 	    }
 
 
