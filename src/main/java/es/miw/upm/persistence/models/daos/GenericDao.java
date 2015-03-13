@@ -1,7 +1,13 @@
 package es.miw.upm.persistence.models.daos;
 
 import java.util.List;
-
+/**
+ * 
+ * @author Usuario
+ *
+ * @param <T>
+ * @param <ID>
+ */
 public interface GenericDao<T, ID> {
 
     void create(T entity);

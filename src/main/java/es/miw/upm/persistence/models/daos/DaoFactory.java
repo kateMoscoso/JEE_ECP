@@ -1,6 +1,10 @@
 package es.miw.upm.persistence.models.daos;
 
-
+/**
+ * 
+ * @author Katherin Moscoso León
+ *
+ */
 
 public abstract class DaoFactory {
 	 public static DaoFactory factory = null;
