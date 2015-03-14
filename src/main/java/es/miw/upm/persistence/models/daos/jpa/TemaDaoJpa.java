@@ -1,15 +1,14 @@
 package es.miw.upm.persistence.models.daos.jpa;
 
 import es.miw.upm.persistence.models.daos.TemaDao;
-import es.miw.upm.persistence.models.entities.TemaEntity;
+import es.miw.upm.persistence.models.entities.Tema;
 
 
 
-public class TemaDaoJpa extends GenericDaoJpa<TemaEntity,Integer>implements TemaDao {
+public class TemaDaoJpa extends GenericDaoJpa<Tema,Integer>implements TemaDao {
 
 	public TemaDaoJpa() {
-		super(TemaEntity.class);
-		// TODO Auto-generated constructor stub
+		super(Tema.class);
 	}
 
 }

@@ -28,6 +28,7 @@ public class GenericDaoJpa <T, ID> implements GenericDao<T, ID> {
 	            entityManager.getTransaction().commit();
 	          //  LogManager.getLogger(GenericDaoJpa.class).debug("create: " + entity);
 	        } catch (Exception e) {
+	        	System.out.println("Error JPA");
 	           // LogManager.getLogger(GenericDaoJpa.class).error("create: " + e);
 	            if (entityManager.getTransaction().isActive())
 	                entityManager.getTransaction().rollback();
