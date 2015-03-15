@@ -26,7 +26,7 @@ public class VotarController {
 	}
 	public void añadirVoto(Tema tema, Voto voto){
 		votoDao.create(voto);
-		tema = temaDao.read(tema.getId_tema());
+		this.tema = temaDao.read(tema.getId_tema());
 		if(tema.getVotos().size()>0){
 			votos = tema.getVotos();
 			votos.add(voto);
@@ -36,7 +36,7 @@ public class VotarController {
 			votos = new ArrayList<Voto>();
 			votos.add(voto);
 		}
-		tema.setVotos(votos);
+		this.tema.setVotos(votos);
 		temaDao.update(tema);
 	}
 

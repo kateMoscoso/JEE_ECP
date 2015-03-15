@@ -17,7 +17,6 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
 		try {
 			if (resultSet != null && resultSet.next()) {
 				tema = new Tema(resultSet.getString(Tema.NOMBRE), resultSet.getString(Tema.PREGUNTA));
-				tema.setId_tema(resultSet.getInt(Tema.ID));
 				return tema;
 			}
 		} catch (SQLException e) {
@@ -39,7 +38,6 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
 	@Override
 	public void create(Tema tema) {
 		this.updateSql(String.format(SQL_INSERT, Tema.TABLE, Tema.NOMBRE, Tema.PREGUNTA, tema.getNombre(), tema.getPregunta()));
-		tema.setId_tema(this.autoId());
 	}
 
 	@Override

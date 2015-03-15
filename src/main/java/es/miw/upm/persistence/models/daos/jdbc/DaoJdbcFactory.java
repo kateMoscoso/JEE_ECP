@@ -8,7 +8,6 @@ import java.sql.Statement;
 import es.miw.upm.persistence.models.daos.DaoFactory;
 import es.miw.upm.persistence.models.daos.TemaDao;
 import es.miw.upm.persistence.models.daos.VotoDao;
-import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.persistence.models.entities.Voto;
 
 public class DaoJdbcFactory extends DaoFactory {

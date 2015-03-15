@@ -1,34 +1,16 @@
 package es.miw.upm.persistence.models.entities;
 
 
-
-
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-
-
-
-
-
-
-
-import es.miw.upm.persistence.jpa.JpaFactory;
-import es.miw.upm.persistence.jpa.TemaJpa;
-import es.miw.upm.persistence.jpa.VotoJpa;
 import es.miw.upm.persistence.model.utils.NivelEstudiosType;
 import es.miw.upm.persistence.models.daos.DaoFactory;
 import es.miw.upm.persistence.models.daos.VotoDao;
 import es.miw.upm.persistence.models.daos.jdbc.DaoJdbcFactory;
-import es.miw.upm.persistence.models.daos.jpa.DaoJpaFactory;
 
 
 @Entity
@@ -130,34 +112,5 @@ public class Voto {
 		dao.deleteById(2);
 		System.out.println(dao.findAll());
 	}
-	public void testJPA(){
-		VotoDao dao;
-		Voto voto, voto2;
-		DaoFactory.setFactory(new DaoJpaFactory());
-//		JpaFactory.dropAndCreateTables();
-//		EntityManager em = JpaFactory.getEntityManagerFactory().createEntityManager();
-//		TemaJpa tema1 = new TemaJpa(1, "RollingStones", "¿Como puntuarias a los RollingStones?");
-		TemaJpa tema2 = new TemaJpa(2, "Muse", "¿Como puntuarias a Muse en directo?");
-
-//		List<VotoJpa> votos = new ArrayList<VotoJpa>();
-//		votos.add(new VotoJpa("100.20.2.2", tema1, NivelEstudiosType.BASICO, 5));
-//		votos.add(new VotoJpa("100.20.2.5", tema1, NivelEstudiosType.INTERMEDIO, 6));
-//		tema1.setVotos(votos);
-//		// Create
-//		em.getTransaction().begin();
-//		em.persist(tema1);
-//		em.persist(tema2);
-//		em.getTransaction().commit();
-//		// find
-//		System.out.println(em.find(TemaJpa.class, 1));
-//		System.out.println(em.find(TemaJpa.class, 2));
-//		System.out.println(em.find(TemaJpa.class, 3));
-//		System.out.println(em.find(TemaJpa.class, 1).getVotos().size());
-//		em.getTransaction().begin();
-//		em.remove(em.find(TemaJpa.class, 1));
-//		em.getTransaction().commit();
-//		System.out.println(em.find(TemaJpa.class, 1));
-	}
-	public static void main(String[] args) {}
-
+	
 }
