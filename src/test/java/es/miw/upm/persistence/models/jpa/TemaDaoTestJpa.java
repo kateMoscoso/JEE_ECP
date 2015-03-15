@@ -5,12 +5,10 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import es.miw.upm.persistence.jpa.JpaFactory;
 import es.miw.upm.persistence.models.daos.DaoFactory;
 import es.miw.upm.persistence.models.daos.TemaDao;
 import es.miw.upm.persistence.models.daos.jpa.DaoJpaFactory;
@@ -25,16 +23,15 @@ public class TemaDaoTestJpa {
 	@BeforeClass
 	public static void beforeClass() {
 		DaoFactory.setFactory(new DaoJpaFactory());
-		//JpaFactory.dropAndCreateTables();
 	}
 
 	@Before
 	public void before() {
 		 votos= new ArrayList<Voto>();
 		this.tema1 = new Tema("RollingStones",
-				"�Como puntuarias a esta banda en directo?");
+				"¿Cómo puntuarías a esta banda en directo?");
 		this.tema2 = new Tema("Java",
-				"�Como puntuarias tu nivel en este lenguaje de programaci�n?");
+				"¿Cómo puntuarías tu nivel en este lenguaje de programación?");
 		daoTema = DaoFactory.getFactory().getTemaDao();
 		daoTema.create(tema1);
 		daoTema.create(tema2);
@@ -61,13 +58,8 @@ public class TemaDaoTestJpa {
 
 	@Test
 	public void testFindAll() {
-
 		assertEquals(2, daoTema.findAll().size());
 	}
 
-	@After
-	public void after() {
-		JpaFactory.dropAndCreateTables();
-	}
 
 }
