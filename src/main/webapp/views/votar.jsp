@@ -1,27 +1,55 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<?xml version="1.0" encoding="UTF-8"  ?>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 	<h1>Bienvenido a la aplicaciones de votaciones</h1>
-	<p>Página de votacion</p>
+	<p>PÃ¡gina de votacion</p>
 	<p>Votaciones</p>
+	<c:set var="vView" scope="request" value="${votar}" />
+	<div>${vView.update()}</div>
+	<form action="/Votacion/jsp/votar" method="post">
 		<p>
-		<c:forEach var="rol" items="${pView.roles}">
-			<option value="${rol}">${rol}</option>
-		</c:forEach>
-	</p>
-	<p>
-		<c:forEach var="tema" items="${pView.temas}">
-			<option value="${tema}">${tema}</option>
-		</c:forEach>
-	</p>
+			Nombre: <input name="nombre" type="text" 
+ 				value="${vView.voto}" />${vView.errorMsg}</p> 
+		<p>
+			Nombre: <input name="ip" type="text" 
+ 				value="<%=request.getRemoteHost()%>>" /><%=request.getRemoteHost()%></p> 
+		<p>
 
+			Temas a votar: <select name="tema">
+				<c:forEach var="tema" items="${vView.temas}">
+					<option value="${tema.nombre}">${tema.nombre}</option>
+				</c:forEach>
+			</select>
+		</p>
+		<p>
+			Nivel de estudios: <select name="nivel">
+				<c:forEach var="nivel" items="${vView. nivelEstudios}">
+					<option value="${nivel}">${nivel}</option>
+				</c:forEach>
+			</select>
+		</p>
+			<p>
+			Puntuacion: <select name="valor">
+				<c:forEach var="valor" items="${vView.puntuacionValores}">
+					<option value="${valor}">${valor}</option>
+				</c:forEach>
+			</select>
+		</p>
+		<p>
+			<input type="submit" value="Enviar" />
+		</p>
+	</form>
+
+	<p>
+		<a href="/Votacion/jsp/home">Volver a Home</a>
+	</p>
 
 </body>
 </html>

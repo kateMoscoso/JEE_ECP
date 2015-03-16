@@ -11,9 +11,19 @@
 	<h2>
 		Vista de <b>Eliminar Tema</b>
 	</h2>
-	<c:set var="eView" scope="request" value="${tema}" />
+	<c:set var="eView" scope="request" value="${eliminarTema}" />
 	<div>${eView.update()}</div>
+	<div>
+	<table>
+		<c:forEach var="tema" items="${eView.temas}">
+			<tr>
+				<td value="${tema.nombre}">${tema.nombre}</td>
+				<td value="${tema.pregunta}">${tema.pregunta}</td>
+			</tr>
+		</c:forEach>
 
+	</table>
+	</div>
 	<p>
 		<a href="/Votacion/jsp/home">Volver a Home</a>
 	</p>
