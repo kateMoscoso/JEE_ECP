@@ -5,26 +5,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link rel="stylesheet" href="bootstrap/css/estilo.css" type="text/css" />
+<script src="bootstrap/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>
-		Vista de <b>Incorporar Tema</b>
-	</h2>
-	<c:set var="pView" scope="request" value="${tema}" />
-	<div>${pView.update()}</div>
-	<form action="/Votacion/jsp/incorporarTema" method="post">
-		<p>
-			Nombre: <input name="nombre" type="text" value="nombre" />
-		</p>
-		<p>
-			Pregunta: <input name="pregunta" type="text" value="pregunta"/>${pView.errorMsg}</p>
-		<p>
-			<input type="submit" value="Añadir" />
-		</p>
-	</form>
-	<p>
-		<a href="/Votacion/jsp/home">Volver a Home</a>
-	</p>
+	<div class="jumbotron">
+		<div class="container">
+			<h2>
+				Vista de <b>Incorporar Tema</b>
+			</h2>
+			<c:set var="pView" scope="request" value="${tema}" />
+			<div>${pView.update()}</div>
+			<form action="/Votacion/jsp/incorporarTema" method="post">
+				<p>
+					Nombre: <input name="nombre" type="text" value="nombre" />
+				</p>
+				<p>
+					Pregunta: <input name="pregunta" type="text" value="pregunta" />${pView.errorMsg}</p>
+				<p>
+					<input type="submit" value="Añadir" />
+				</p>
+			</form>
+			<p>
+				<a href="/Votacion/jsp/home">Volver a Home</a>
+			</p>
+		</div>
+	</div>
 </body>
 </html>
