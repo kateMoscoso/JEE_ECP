@@ -10,23 +10,21 @@ import es.miw.upm.persistence.models.daos.jpa.DaoJpaFactory;
 import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.persistence.models.entities.Voto;
 
-public class VotarController {
-	private TemaDao temaDao;
-	private VotoDao votoDao;
+public class VotarController extends Controller {
+	private TemaDao daoTema;
+	private VotoDao daoVoto;
 	private Tema tema;
 	private List<Voto> votos;
 	public VotarController(){
 		DaoFactory.setFactory(new DaoJpaFactory());
-		temaDao = DaoFactory.getFactory().getTemaDao();
-		votoDao = DaoFactory.getFactory().getVotoDao();
+		daoTema = DaoFactory.getFactory().getTemaDao();
+		daoVoto = DaoFactory.getFactory().getVotoDao();
 
 	}
-	public List<Tema> obtenerTemas(){
-		return temaDao.findAll();
-	}
+
 	public void añadirVoto(Tema tema, Voto voto){
-		votoDao.create(voto);
-		this.tema = temaDao.read(tema.getId_tema());
+		daoVoto.create(voto);
+		this.tema = daoTema.read(tema.getId_tema());
 		if(tema.getVotos().size()>0){
 			votos = tema.getVotos();
 			votos.add(voto);
@@ -37,7 +35,7 @@ public class VotarController {
 			votos.add(voto);
 		}
 		this.tema.setVotos(votos);
-		temaDao.update(tema);
+		daoTema.update(tema);
 	}
 
 

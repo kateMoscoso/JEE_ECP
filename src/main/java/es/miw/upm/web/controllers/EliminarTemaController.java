@@ -9,7 +9,7 @@ import es.miw.upm.persistence.models.daos.jpa.DaoJpaFactory;
 import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.persistence.models.entities.Voto;
 
-public class EliminarTemaController {
+public class EliminarTemaController extends Controller{
 	private TemaDao daoTema;
 	private VotoDao daoVoto;
 	private List<Voto> votos;
