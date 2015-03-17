@@ -14,18 +14,22 @@
 	<c:set var="vView" scope="request" value="${votar}" />
 	<div>${vView.update()}</div>
 
-	<form action="/Votacion/jsp/votar" method="post">
-		<p>
-			Temas a votar: <select name="tema">
-				<c:forEach var="tema" items="${vView.temas}">
-					<option value="${tema.nombre}">${tema.nombre}</option>
-				</c:forEach>
-			</select>
-		</p>
-		<p>
-			<input type="submit" value="Enviar" />
-		</p>
-	</form>
+		<form action="/Votacion/jsp/votar" method="post">
+		
+	<p>
+		Nombre: <input name="ip" type="text"
+			value="<%=request.getRemoteHost()%>>" /><%=request.getRemoteHost()%></p>
+			<p>
+				Nivel de estudios: <select name="nivel">
+					<c:forEach var="nivel" items="${vView. nivelEstudios}">
+						<option value="${nivel}">${nivel}</option>
+					</c:forEach>
+				</select>
+			</p>
+			<p>
+				<input type="submit" value="Enviar" />
+			</p>
+		</form>
 	<p>
 		<a href="/Votacion/jsp/home">Volver a Home</a>
 	</p>

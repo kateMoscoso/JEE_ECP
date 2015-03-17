@@ -88,16 +88,17 @@ public class VotarView {
 
 
 	public String process() {
-
+		
+//if(thi)
 		//		if (this.voto.getIdVoto() == 666
 		//				&& !this.persona.getNombre().equals("Demonio")) {
 		//			this.errorMsg = "Sólo se acepta el nombre 'Demonio'";
 		//			return "persona";
 		//		} else {
-		//			LogManager.getLogger(PersonaView.class).debug(
-		//					"Se accede a la capa de negocio para registrar persona: "
-		//							+ persona);
-		return "home";
+//					LogManager.getLogger(VotarView.class).debug(
+//							"Se accede a la capa de negocio para registrar persona: "
+//									+ tema.getNombre()+ tema.getPregunta());
+		return "votarTema";
 	}
 
 }

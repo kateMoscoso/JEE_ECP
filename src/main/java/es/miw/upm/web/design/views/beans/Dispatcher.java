@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+
 import es.miw.upm.persistence.model.utils.NivelEstudiosType;
 import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.persistence.models.entities.Voto;
@@ -66,16 +68,17 @@ public class Dispatcher extends HttpServlet {
 		Voto voto;
 		switch (action) {
 		case "votar":
-			voto = new Voto();
-			voto.setIp(request.getParameter("ip"));
-			voto.setNivelEstudiosType(NivelEstudiosType.valueOf(request.getParameter("nivelEstudios")));
-			voto.setValor(Integer.valueOf(request.getParameter("valor")));
+			System.out.println(request.getParameter("tema"));
+//			voto = new Voto();
+//			voto.setIp(request.getParameter("ip"));
+//			voto.setNivelEstudiosType(NivelEstudiosType.valueOf(request.getParameter("nivel")));
+//			voto.setValor(Integer.valueOf(request.getParameter("valor")));
 			tema = new Tema();
-			tema.setNombre(request.getParameter("nombre"));
-			tema.setPregunta(request.getParameter("pregunta"));
+			tema.setNombre(request.getParameter("tema"));
+//			tema.setPregunta(request.getParameter("pregunta"));
 			VotarView votarView = new VotarView();
-			votarView.setVoto(voto);
-			votarView.setTema(tema);
+//			votarView.setVoto(voto);
+//			votarView.setTema(tema);
 			request.setAttribute(action, votarView);
 			
 			view = votarView.process();
