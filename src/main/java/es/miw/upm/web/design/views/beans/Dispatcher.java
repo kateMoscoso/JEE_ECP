@@ -66,7 +66,7 @@ public class Dispatcher extends HttpServlet {
 		String view = "home";
 		Tema tema;
 		Voto voto;
-		switch (action) {
+		switch (action) { 
 		case "votar":
 			System.out.println(request.getParameter("tema"));
 //			voto = new Voto();
