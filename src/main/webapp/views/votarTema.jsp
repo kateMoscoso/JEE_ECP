@@ -13,23 +13,32 @@
 	<p>Votaciones</p>
 	<c:set var="vView" scope="request" value="${votar}" />
 	<div>${vView.update()}</div>
-
-		<form action="/Votacion/jsp/votar" method="post">
-		
+	<form action="/Votacion/jsp/votarTema" method="post">
 	<p>
-		Nombre: <input name="ip" type="text"
-			value="<%=request.getRemoteHost()%>>" /><%=request.getRemoteHost()%></p>
-			<p>
-				Nivel de estudios: <select name="nivel">
-					<c:forEach var="nivel" items="${vView. nivelEstudios}">
-						<option value="${nivel}">${nivel}</option>
-					</c:forEach>
-				</select>
-			</p>
-			<p>
-				<input type="submit" value="Enviar" />
-			</p>
-		</form>
+		<input name="pregunta" type="text" value="${vView.tema.pregunta}"/>${vView.tema.pregunta}
+		</p>
+		<h3>
+			Tu ip es: <input name="ip" type="text"
+				value="<%=request.getRemoteHost()%>" /><%=request.getRemoteHost()%></h3>
+
+		<p>
+			Selecciona tu nivel de estudios: <select name="nivel">
+				<c:forEach var="nivel" items="${vView. nivelEstudios}">
+					<option value="${nivel}">${nivel}</option>
+				</c:forEach>
+			</select>
+		</p>
+		<p>
+			Selecciona la puntuacion: <select name="valor">
+				<c:forEach var="valor" items="${vView. puntuacionValores}">
+					<option value="${valor}">${valor}</option>
+				</c:forEach>
+			</select>
+		</p>
+		<p>
+			<input type="submit" value="Enviar" />
+		</p>
+	</form>
 	<p>
 		<a href="/Votacion/jsp/home">Volver a Home</a>
 	</p>

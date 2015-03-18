@@ -35,6 +35,12 @@ public class Dispatcher extends HttpServlet {
 			request.setAttribute(action, votoView);
 			view = action;
 			break;
+		case "votarTema":
+			VotarView votoView2 = new VotarView();
+//			votoView2.setTema(tema);
+			request.setAttribute(action, votoView2);
+			view = action;
+			break;
 		case "verVotaciones":
 			VerVotacionesView verVotacionesView = new VerVotacionesView();
 			request.setAttribute(action, verVotacionesView);
@@ -65,23 +71,34 @@ public class Dispatcher extends HttpServlet {
 		String action = request.getPathInfo().substring(1);
 		String view = "home";
 		Tema tema;
-		Voto voto;
+		//		Voto voto;
 		switch (action) { 
 		case "votar":
-			System.out.println(request.getParameter("tema"));
-//			voto = new Voto();
-//			voto.setIp(request.getParameter("ip"));
-//			voto.setNivelEstudiosType(NivelEstudiosType.valueOf(request.getParameter("nivel")));
-//			voto.setValor(Integer.valueOf(request.getParameter("valor")));
-			tema = new Tema();
-			tema.setNombre(request.getParameter("tema"));
-//			tema.setPregunta(request.getParameter("pregunta"));
 			VotarView votarView = new VotarView();
-//			votarView.setVoto(voto);
-//			votarView.setTema(tema);
+			votarView.setId(Integer.valueOf(request.getParameter("tema")));
 			request.setAttribute(action, votarView);
-			
 			view = votarView.process();
+			break;
+		case "votarTema":
+//			VotarView votarView2 = new VotarView();
+//			System.out.println("Primer variable que regresa  "+ Integer.valueOf(request.getParameter("tema")));
+//			//				tema = new Tema();
+//			votarView2.setId(Integer.valueOf(request.getParameter("tema")));
+//			request.setAttribute(action, votarView2);
+//			view = votarView2.process();
+			//			}
+			//			else {
+							System.out.println("segundo");
+			//				voto = new Voto();
+			//				voto.setIp(request.getParameter("ip"));
+			//				System.out.println("la ip es: "+request.getParameter("ip"));
+			//				voto.setNivelEstudiosType(NivelEstudiosType.valueOf(request.getParameter("nivel")));
+			//				voto.setValor(Integer.valueOf(request.getParameter("valor")));
+			//				votarView.setVoto(voto);
+			//				//			votarView.setTema(tema);
+			//				request.setAttribute(action, votarView);
+			//				view = votarView.process();
+			//			}
 			break;
 		case "incorporarTema":
 			IncorporarTemaView incorporarTemaView = new IncorporarTemaView();
@@ -95,13 +112,13 @@ public class Dispatcher extends HttpServlet {
 		case "eliminarTema":
 			EliminarTemaView eliminarTemaView = new EliminarTemaView();
 			tema = new Tema();
-//			tema.setId_tema((Integer)(request.getParameter("id"));
+			//			tema.setId_tema((Integer)(request.getParameter("id"));
 			tema.setNombre(request.getParameter("nombre"));
 			tema.setPregunta(request.getParameter("pregunta"));
 			eliminarTemaView.setTema(tema);
-//			incorporarTemaView.setTema(tema);
-//			request.setAttribute(action, incorporarTemaView);
-//			view = incorporarTemaView.process();
+			//			incorporarTemaView.setTema(tema);
+			//			request.setAttribute(action, incorporarTemaView);
+			//			view = incorporarTemaView.process();
 			break;
 		}
 

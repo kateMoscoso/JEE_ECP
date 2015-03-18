@@ -13,22 +13,53 @@
 	<p>Votaciones</p>
 	<c:set var="vView" scope="request" value="${votar}" />
 	<div>${vView.update()}</div>
+<%-- 	<c:if test="${vView.flag <0}"> --%>
 
-	<form action="/Votacion/jsp/votar" method="post">
-		<p>
-			Temas a votar: <select name="tema">
-				<c:forEach var="tema" items="${vView.temas}">
-					<option value="${tema.nombre}">${tema.nombre}</option>
-				</c:forEach>
-			</select>
-		</p>
-		<p>
-			<input type="submit" value="Enviar" />
-		</p>
-	</form>
+		<form action="/Votacion/jsp/votar" method="post">
+			<p>
+				Temas a votar: <select name="tema">
+					<c:forEach var="tema" items="${vView.temas}">
+						<option value="${tema.idTema}">${tema.nombre}</option>
+					</c:forEach>
+				</select>
+			</p>
+
+			<p>
+				<input type="submit" value="Enviar" />
+			</p>
+		</form>
+<%-- 	</c:if> --%>
+<%-- 	<c:if test="${vView.flag >0}"> --%>
+<%-- 		<jsp:forward page="votar.jsp"> --%>
+<%-- 			<jsp:param name="formulario" value="${vView.flag}" /> --%>
+<%-- 		</jsp:forward> --%>
+<!-- 		<form action="/Votacion/jsp/votar" method="post"> -->
+
+<!-- 			<h3> -->
+<!-- 				Tu ip es: <input name="ip" type="text" -->
+<%-- 					value="<%=request.getRemoteHost()%>" /><%=request.getRemoteHost()%></h3> --%>
+
+<!-- 			<p> -->
+<!-- 				Selecciona tu nivel de estudios: <select name="nivel"> -->
+<%-- 					<c:forEach var="nivel" items="${vView. nivelEstudios}"> --%>
+<%-- 						<option value="${nivel}">${nivel}</option> --%>
+<%-- 					</c:forEach> --%>
+<!-- 				</select> -->
+<!-- 			</p> -->
+<!-- 			<p> -->
+<!-- 				Selecciona la puntuacion: <select name="valor"> -->
+<%-- 					<c:forEach var="valor" items="${vView. puntuacionValores}"> --%>
+<%-- 						<option value="${valor}">${valor}</option> --%>
+<%-- 					</c:forEach> --%>
+<!-- 				</select> -->
+<!-- 			</p> -->
+<!-- 			<p> -->
+<!-- 				<input type="submit" value="Enviar" /> -->
+<!-- 			</p> -->
+<!-- 		</form> -->
+<%-- 	</c:if> --%>
 	<p>
 		<a href="/Votacion/jsp/home">Volver a Home</a>
 	</p>
-
 </body>
 </html>

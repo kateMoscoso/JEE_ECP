@@ -39,7 +39,7 @@ public class TemaDaoTestJpa {
 
 	@Test
 	public void testRead() {
-		assertEquals(tema1, daoTema.read(tema1.getId_tema()));
+		assertEquals(tema1, daoTema.read(tema1.getIdTema()));
 	}
 
 	@Test
@@ -47,13 +47,13 @@ public class TemaDaoTestJpa {
 		tema1.setNombre("U2");
 
 		daoTema.update(tema1);
-		assertEquals(tema1, daoTema.read(tema1.getId_tema()));
+		assertEquals(tema1, daoTema.read(tema1.getIdTema()));
 	}
 
 	@Test
 	public void testDeleteByID() {
-		daoTema.deleteById(tema2.getId_tema());
-		assertNull(daoTema.read(tema2.getId_tema()));
+		daoTema.deleteById(tema2.getIdTema());
+		assertNull(daoTema.read(tema2.getIdTema()));
 	}
 
 	@Test

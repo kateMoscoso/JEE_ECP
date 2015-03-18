@@ -24,7 +24,7 @@ public class VotarController extends Controller {
 
 	public void añadirVoto(Tema tema, Voto voto){
 		daoVoto.create(voto);
-		this.tema = daoTema.read(tema.getId_tema());
+		this.tema = daoTema.read(tema.getIdTema());
 		if(tema.getVotos().size()>0){
 			votos = tema.getVotos();
 			votos.add(voto);
@@ -37,6 +37,8 @@ public class VotarController extends Controller {
 		this.tema.setVotos(votos);
 		daoTema.update(tema);
 	}
-
+	public Tema obtenerTema(int id){
+		return daoTema.read(id);
+	}
 
 }

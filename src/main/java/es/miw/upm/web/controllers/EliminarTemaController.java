@@ -20,7 +20,7 @@ public class EliminarTemaController extends Controller{
 	}
 	public void eliminarTema(Tema tema){
 		votos = tema.getVotos();
-		daoTema.deleteById(tema.getId_tema());
+		daoTema.deleteById(tema.getIdTema());
 		for (Voto voto : votos) {
 			daoVoto.deleteById(voto.getIdVoto());
 		}

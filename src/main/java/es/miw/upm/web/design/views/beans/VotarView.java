@@ -15,10 +15,29 @@ public class VotarView {
 	private String errorMsg;
 	private Tema tema;
 	private Voto voto;
+	private Integer id;
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
 	private List<Tema> temas;
 	private String[] nivelEstudios;
 	private VotarController votarController;
 	private Integer [] puntuacionValores;
+	private Integer flag = -1;
+
+	public Integer getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
 
 	public VotarView() {
 		votarController = new VotarController();
@@ -74,8 +93,8 @@ public class VotarView {
 
 	@PostConstruct
 	public void update() {
-		 LogManager.getLogger(VotarView.class).debug(
-	                "Se accede a la capa de negocio para recuperar roles");
+		LogManager.getLogger(VotarView.class).debug(
+				"Se accede a la capa de negocio para recuperar roles");
 		temas = votarController.obtenerTemas();
 		nivelEstudios = new String [NivelEstudiosType.values().length];
 		int i = 0;
@@ -88,16 +107,9 @@ public class VotarView {
 
 
 	public String process() {
-		
-//if(thi)
-		//		if (this.voto.getIdVoto() == 666
-		//				&& !this.persona.getNombre().equals("Demonio")) {
-		//			this.errorMsg = "Sólo se acepta el nombre 'Demonio'";
-		//			return "persona";
-		//		} else {
-//					LogManager.getLogger(VotarView.class).debug(
-//							"Se accede a la capa de negocio para registrar persona: "
-//									+ tema.getNombre()+ tema.getPregunta());
+		if(this.getId()!=null){
+		tema = votarController.obtenerTema(id);
+		}
 		return "votarTema";
 	}
 

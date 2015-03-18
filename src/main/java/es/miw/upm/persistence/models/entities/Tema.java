@@ -40,9 +40,13 @@ public class Tema {
 		this.nombre = nombre;
 		this.pregunta = pregunta;
 	}
-	public Integer getId_tema() {
+
+	public Integer getIdTema() {
 		return idTema;
 	}
+//	public void setIdTema(Integer idTema) {
+//		this.idTema = idTema;
+//	}
 	public String getNombre() {
 		return nombre;
 	}
