@@ -1,6 +1,4 @@
 package es.miw.upm.web.controllers;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import es.miw.upm.persistence.models.daos.DaoFactory;
@@ -14,6 +12,7 @@ public class VotarController extends Controller {
 	private TemaDao daoTema;
 	private VotoDao daoVoto;
 	private Tema tema;
+	private Voto voto;
 	private List<Voto> votos;
 	public VotarController(){
 		DaoFactory.setFactory(new DaoJpaFactory());
@@ -22,19 +21,12 @@ public class VotarController extends Controller {
 
 	}
 
-	public void añadirVoto(Tema tema, Voto voto){
-		daoVoto.create(voto);
-		this.tema = daoTema.read(tema.getIdTema());
-		if(tema.getVotos().size()>0){
-			votos = tema.getVotos();
-			votos.add(voto);
-			tema.setVotos(votos);
-		}
-		else {
-			votos = new ArrayList<Voto>();
-			votos.add(voto);
-		}
-		this.tema.setVotos(votos);
+	public void añadirVoto(Tema tema, Voto voto){		
+//		this.tema = daoTema.read(tema.getIdTema());
+		System.out.println(tema.getVotos());
+		this.voto = new Voto(voto.getIp(),voto.getNivelEstudiosType(), voto.getValor());
+		daoVoto.create(this.voto);
+		tema.getVotos().add(voto);
 		daoTema.update(tema);
 	}
 	public Tema obtenerTema(int id){

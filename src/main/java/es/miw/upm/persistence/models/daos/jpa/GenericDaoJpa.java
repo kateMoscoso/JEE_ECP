@@ -4,11 +4,14 @@ import java.util.List;
 
 //import org.apache.logging.log4j.LogManager;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
+import org.apache.logging.log4j.LogManager;
 
 import es.miw.upm.persistence.models.daos.GenericDao;
 
@@ -26,10 +29,10 @@ public class GenericDaoJpa <T, ID> implements GenericDao<T, ID> {
 	            entityManager.getTransaction().begin();
 	            entityManager.persist(entity);
 	            entityManager.getTransaction().commit();
-	          //  LogManager.getLogger(GenericDaoJpa.class).debug("create: " + entity);
+	            LogManager.getLogger(GenericDaoJpa.class).debug("create: " + entity);
 	        } catch (Exception e) {
 	        	System.out.println("Error JPA");
-	           // LogManager.getLogger(GenericDaoJpa.class).error("create: " + e);
+	            LogManager.getLogger(GenericDaoJpa.class).error("create: " + e);
 	            if (entityManager.getTransaction().isActive())
 	                entityManager.getTransaction().rollback();
 	        } finally {
@@ -53,9 +56,9 @@ public class GenericDaoJpa <T, ID> implements GenericDao<T, ID> {
 	            entityManager.getTransaction().begin();
 	            entityManager.merge(entity);
 	            entityManager.getTransaction().commit();
-	          //  LogManager.getLogger(GenericDaoJpa.class).debug("update: " + entity);
+	            LogManager.getLogger(GenericDaoJpa.class).debug("update: " + entity);
 	        } catch (Exception e) {
-	        //    LogManager.getLogger(GenericDaoJpa.class).error("update: " + e);
+	            LogManager.getLogger(GenericDaoJpa.class).error("update: " + e);
 	            if (entityManager.getTransaction().isActive())
 	                entityManager.getTransaction().rollback();
 	        } finally {
@@ -72,9 +75,9 @@ public class GenericDaoJpa <T, ID> implements GenericDao<T, ID> {
 	                entityManager.getTransaction().begin();
 	                entityManager.remove(entity);
 	                entityManager.getTransaction().commit();
-	               // LogManager.getLogger(GenericDaoJpa.class).debug("delete: " + entity);
+	                LogManager.getLogger(GenericDaoJpa.class).debug("delete: " + entity);
 	            } catch (Exception e) {
-	              //  LogManager.getLogger(GenericDaoJpa.class).error("delete: " + e);
+	                LogManager.getLogger(GenericDaoJpa.class).error("delete: " + e);
 	                if (entityManager.getTransaction().isActive())
 	                    entityManager.getTransaction().rollback();
 	            } finally {

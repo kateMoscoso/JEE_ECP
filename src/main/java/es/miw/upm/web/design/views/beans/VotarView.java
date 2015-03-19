@@ -16,6 +16,7 @@ public class VotarView {
 	private Tema tema;
 	private Voto voto;
 	private Integer id;
+
 	public Integer getId() {
 		return id;
 	}
@@ -24,11 +25,10 @@ public class VotarView {
 		this.id = id;
 	}
 
-
 	private List<Tema> temas;
 	private String[] nivelEstudios;
 	private VotarController votarController;
-	private Integer [] puntuacionValores;
+	private Integer[] puntuacionValores;
 	private Integer flag = -1;
 
 	public Integer getFlag() {
@@ -96,21 +96,29 @@ public class VotarView {
 		LogManager.getLogger(VotarView.class).debug(
 				"Se accede a la capa de negocio para recuperar roles");
 		temas = votarController.obtenerTemas();
-		nivelEstudios = new String [NivelEstudiosType.values().length];
+		nivelEstudios = new String[NivelEstudiosType.values().length];
 		int i = 0;
-		for (NivelEstudiosType e: NivelEstudiosType.values()) {
-			nivelEstudios[i]= e.toString();
+		for (NivelEstudiosType e : NivelEstudiosType.values()) {
+			nivelEstudios[i] = e.toString();
 			i++;
 		}
-		puntuacionValores = new Integer [] {0,1,2,3,4,5,6,7,8,9,10};
+		puntuacionValores = new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	}
 
-
 	public String process() {
-		if(this.getId()!=null){
-		tema = votarController.obtenerTema(id);
+		String view = "votar";
+		System.out.println("el flag en view es: " + this.flag);
+		if (this.getId() != null) {
+			tema = votarController.obtenerTema(id);
+			if (this.getFlag() == 2) {
+				System.out.println(voto.toString());
+				System.out.println(tema.toString());
+				votarController.añadirVoto(tema, voto);
+				view = "home";
+				this.flag = -1;
+			}
 		}
-		return "votarTema";
+		return view;
 	}
 
 }

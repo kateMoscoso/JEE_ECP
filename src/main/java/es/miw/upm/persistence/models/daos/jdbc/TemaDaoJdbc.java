@@ -51,7 +51,7 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
 	@Override
 	public void update(Tema tema) {
 		this.updateSql(String.format(SQL_UPDATE, Tema.TABLE, Tema.NOMBRE, tema.getNombre(), Tema.PREGUNTA,
-				tema.getPregunta(), tema.getId_tema()));
+				tema.getPregunta(), tema.getIdTema()));
 	}
 
 	@Override

@@ -1,17 +1,15 @@
 package es.miw.upm.persistence.models.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import es.miw.upm.persistence.jpa.JpaFactory;
-import es.miw.upm.persistence.models.daos.DaoFactory;
-import es.miw.upm.persistence.models.daos.TemaDao;
-import es.miw.upm.persistence.models.daos.jpa.DaoJpaFactory;
 
 @Entity
 public class Tema {
@@ -21,6 +19,7 @@ public class Tema {
 
 	@Id
 	@GeneratedValue
+	@Column(name = ID)
 	private Integer idTema;
 
 	public static final String NOMBRE = "NOMBRE";
@@ -32,21 +31,22 @@ public class Tema {
 	// Relación unidireccional: 1:0..n
 	// relación mapeada en una tabla de unión
 	// Se aplica cascada
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Voto> votos;
 
 	public Tema(){}
 	public Tema(String nombre, String pregunta){
 		this.nombre = nombre;
 		this.pregunta = pregunta;
+		votos = new ArrayList<Voto>();
 	}
 
 	public Integer getIdTema() {
 		return idTema;
 	}
-//	public void setIdTema(Integer idTema) {
-//		this.idTema = idTema;
-//	}
+	public void setIdTema(Integer idTema) {
+		this.idTema = idTema;
+	}
 	public String getNombre() {
 		return nombre;
 	}

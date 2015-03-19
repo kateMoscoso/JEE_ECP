@@ -8,13 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
-
 import es.miw.upm.persistence.model.utils.NivelEstudiosType;
 import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.persistence.models.entities.Voto;
-
-
 
 @WebServlet("/jsp/*")
 public class Dispatcher extends HttpServlet {
@@ -23,24 +19,24 @@ public class Dispatcher extends HttpServlet {
 	private static String PATH_ROOT_VIEW = "/views/";
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 		String action = request.getPathInfo().substring(1);
 
-		String view; 
+		String view;
 		switch (action) {
 		case "votar":
 			VotarView votoView = new VotarView();
 			request.setAttribute(action, votoView);
 			view = action;
 			break;
-		case "votarTema":
-			VotarView votoView2 = new VotarView();
-//			votoView2.setTema(tema);
-			request.setAttribute(action, votoView2);
-			view = action;
-			break;
+//		case "votarTema":
+//			VotarView votoView2 = new VotarView();
+//			// votoView2.setTema(tema);
+//			request.setAttribute(action, votoView2);
+//			view = action;
+//			break;
 		case "verVotaciones":
 			VerVotacionesView verVotacionesView = new VerVotacionesView();
 			request.setAttribute(action, verVotacionesView);
@@ -60,45 +56,42 @@ public class Dispatcher extends HttpServlet {
 			view = "home";
 		}
 
-		this.getServletContext().getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
-		.forward(request, response);
+		this.getServletContext()
+				.getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
+				.forward(request, response);
 
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getPathInfo().substring(1);
 		String view = "home";
 		Tema tema;
-		//		Voto voto;
-		switch (action) { 
+		Voto voto;
+		switch (action) {
 		case "votar":
 			VotarView votarView = new VotarView();
-			votarView.setId(Integer.valueOf(request.getParameter("tema")));
-			request.setAttribute(action, votarView);
-			view = votarView.process();
-			break;
-		case "votarTema":
-//			VotarView votarView2 = new VotarView();
-//			System.out.println("Primer variable que regresa  "+ Integer.valueOf(request.getParameter("tema")));
-//			//				tema = new Tema();
-//			votarView2.setId(Integer.valueOf(request.getParameter("tema")));
-//			request.setAttribute(action, votarView2);
-//			view = votarView2.process();
-			//			}
-			//			else {
-							System.out.println("segundo");
-			//				voto = new Voto();
-			//				voto.setIp(request.getParameter("ip"));
-			//				System.out.println("la ip es: "+request.getParameter("ip"));
-			//				voto.setNivelEstudiosType(NivelEstudiosType.valueOf(request.getParameter("nivel")));
-			//				voto.setValor(Integer.valueOf(request.getParameter("valor")));
-			//				votarView.setVoto(voto);
-			//				//			votarView.setTema(tema);
-			//				request.setAttribute(action, votarView);
-			//				view = votarView.process();
-			//			}
+			System.out.println("Dispatcher el tag es: " + request.getParameter("tag"));
+			if (Integer.valueOf(request.getParameter("tag")) == 1) {
+				votarView.setId(Integer.valueOf(request.getParameter("tema")));
+				votarView.setFlag(1);
+				request.setAttribute(action, votarView);
+				view = votarView.process();
+			} else if (Integer.valueOf(request.getParameter("tag")) == 2) {
+				System.out.println("segunda parte");
+				votarView.setFlag(Integer.valueOf(request.getParameter("tag")));
+				votarView.setId(Integer.valueOf(request.getParameter("id")));
+				voto = new Voto();
+				voto.setIp(request.getParameter("ip"));
+				System.out.println("la ip es: " + request.getParameter("ip"));
+				voto.setNivelEstudiosType(NivelEstudiosType.valueOf(request
+						.getParameter("nivel")));
+				voto.setValor(Integer.valueOf(request.getParameter("valor")));
+				votarView.setVoto(voto);
+				request.setAttribute(action, votarView);
+				view = votarView.process();
+			}
 			break;
 		case "incorporarTema":
 			IncorporarTemaView incorporarTemaView = new IncorporarTemaView();
@@ -112,18 +105,19 @@ public class Dispatcher extends HttpServlet {
 		case "eliminarTema":
 			EliminarTemaView eliminarTemaView = new EliminarTemaView();
 			tema = new Tema();
-			//			tema.setId_tema((Integer)(request.getParameter("id"));
+			// tema.setId_tema((Integer)(request.getParameter("id"));
 			tema.setNombre(request.getParameter("nombre"));
 			tema.setPregunta(request.getParameter("pregunta"));
 			eliminarTemaView.setTema(tema);
-			//			incorporarTemaView.setTema(tema);
-			//			request.setAttribute(action, incorporarTemaView);
-			//			view = incorporarTemaView.process();
+			// incorporarTemaView.setTema(tema);
+			// request.setAttribute(action, incorporarTemaView);
+			// view = incorporarTemaView.process();
 			break;
 		}
 
-		this.getServletContext().getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
-		.forward(request, response);
+		this.getServletContext()
+				.getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
+				.forward(request, response);
 	}
 
 }

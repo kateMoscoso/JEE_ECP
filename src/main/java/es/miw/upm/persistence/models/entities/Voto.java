@@ -7,6 +7,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import es.miw.upm.persistence.model.utils.NivelEstudiosType;
 import es.miw.upm.persistence.models.daos.DaoFactory;
 import es.miw.upm.persistence.models.daos.VotoDao;
@@ -14,6 +16,7 @@ import es.miw.upm.persistence.models.daos.jdbc.DaoJdbcFactory;
 
 
 @Entity
+@Table(name = Voto.TABLE)
 public class Voto {
 	public static final String TABLE = "voto";
 

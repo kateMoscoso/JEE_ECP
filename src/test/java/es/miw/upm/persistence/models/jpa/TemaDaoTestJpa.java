@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import es.miw.upm.persistence.jpa.JpaFactory;
 import es.miw.upm.persistence.models.daos.DaoFactory;
 import es.miw.upm.persistence.models.daos.TemaDao;
 import es.miw.upm.persistence.models.daos.jpa.DaoJpaFactory;
@@ -23,6 +24,7 @@ public class TemaDaoTestJpa {
 	@BeforeClass
 	public static void beforeClass() {
 		DaoFactory.setFactory(new DaoJpaFactory());
+		JpaFactory.dropAndCreateTables();
 	}
 
 	@Before
@@ -43,7 +45,7 @@ public class TemaDaoTestJpa {
 	}
 
 	@Test
-	public void testUpdateVoto() {
+	public void testUpdateTema() {
 		tema1.setNombre("U2");
 
 		daoTema.update(tema1);

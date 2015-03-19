@@ -12,8 +12,8 @@
 	<p>Por favor rellene el soguiente formularo para votar</p>
 	<c:set var="vView" scope="request" value="${votar}" />
 	<div>${vView.update()}</div>
+<!-- 	<p>vView.flag</p> -->
 	<c:if test="${vView.flag <0}">
-
 		<form action="/Votacion/jsp/votar" method="post">
 			<p>
 				Temas a votar: <select name="tema">
