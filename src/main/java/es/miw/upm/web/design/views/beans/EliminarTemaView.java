@@ -2,11 +2,14 @@ package es.miw.upm.web.design.views.beans;
 
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+
 import org.apache.logging.log4j.LogManager;
 
 import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.web.controllers.EliminarTemaController;
 
+@ManagedBean
 public class EliminarTemaView {
 	private String errorMsg;
 	private Integer idtema;

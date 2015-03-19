@@ -2,8 +2,10 @@ package es.miw.upm.web.design.views.beans;
 
 import java.util.Map;
 
-import es.miw.upm.web.controllers.VerVotacionesController;
+import javax.faces.bean.ManagedBean;
 
+import es.miw.upm.web.controllers.VerVotacionesController;
+@ManagedBean
 public class VerVotacionesView {
 	private Map<String, Integer> votaciones; 
 	private Map<String, Double> medias;

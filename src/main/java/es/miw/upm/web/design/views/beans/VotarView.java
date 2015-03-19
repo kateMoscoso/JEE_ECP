@@ -3,6 +3,7 @@ package es.miw.upm.web.design.views.beans;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -10,7 +11,7 @@ import es.miw.upm.persistence.model.utils.NivelEstudiosType;
 import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.persistence.models.entities.Voto;
 import es.miw.upm.web.controllers.VotarController;
-
+@ManagedBean
 public class VotarView {
 	private String errorMsg;
 	private Tema tema;
