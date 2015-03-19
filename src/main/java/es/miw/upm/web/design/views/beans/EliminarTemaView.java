@@ -64,14 +64,11 @@ public class EliminarTemaView {
 		LogManager.getLogger(EliminarTemaView.class).debug(
 				"Se accede a la capa de negocio para recuperar los temas");
 		temas = eliminarTemaController.obtenerTemas();
-		
-
 	}
 
 	public String process() {
 		String view = "home";
 		if (flag==2) {
-			System.out.println("Eliminar tema: " + idtema);
 			eliminarTemaController.eliminarTema(idtema);
 			view = "home";
 		}

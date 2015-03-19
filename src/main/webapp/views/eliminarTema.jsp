@@ -5,45 +5,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-<link rel="stylesheet" href="bootstrap/css/estilo.css" type="text/css" />
-<script src="/bootstrap/css/bootstrap.min.css"></script> 
+<meta charset="UTF-8">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../bootstrap/css/bootstrap-responsive.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="/..bootstrap/css/estilo.css"
+	type="text/css" />
+<script src="../bootstrap/css/bootstrap.min.css"></script>
 <title>Votacion</title>
 </head>
 <body>
 	<c:set var="eView" scope="request" value="${eliminarTema}" />
-	<div class="container">
-		<div class="panel panel-default">
+	<div class="jumbotron">
+		<div class="container">
 			<div class="panel-heading">
 				<h1>
 					<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-					Temas: <small>temas registrados en el sistema</small>
+					Temas: <small>Lista Temas registrados en el sistema</small>
 				</h1>
 			</div>
 			<div>${eView.update()}</div>
-			<div class="table-responsive">
-				<div class="panel panel-default">
-					<table class="table table-striped table-condensed">
-						<tr>
-							<th>Nombre</th>
-							<th>Pregunta</th>
-						</tr>
-						<c:forEach var="tema" items="${eView.temas}">
-							<tr>
-								<td value="${tema.nombre}">${tema.nombre}</td>
-								<td value="${tema.pregunta}">${tema.pregunta}</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
-			</div>
+			<c:if test="${eView.flag <0}">
+				<form action="/Votacion/jsp/eliminarTema" method="post">
+					<div class="form-group">
+						<label for="codigo">Introduce el codigo de validacion:</label> <input
+							type="hidden" name="flag" value="1" /> <input type="text"
+							name="codigo" value="" />
+
+					</div>
+					<c:if test="${not empty eView.errorMsg}">
+						<div class="alert alert-danger" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign"
+								aria-hidden="true"></span> <span class="sr-only">Error:</span>
+							${eView.errorMsg}
+						</div>
+
+					</c:if>
+					<button type="submit" class="btn btn-primary">Enviar</button>
+				</form>
+			</c:if>
+			<c:if test="${eView.flag >1}">
+				<form action="/Votacion/jsp/eliminarTema" method="post">
+					<p>
+						Temas a eliminar: <select name="tema" class="selectpicker">
+							<c:forEach var="tema" items="${eView.temas}">
+								<option value="${tema.idTema}">${tema.nombre}</option>
+							</c:forEach>
+						</select>
+					</p>
+					<p>
+						<input type="hidden" name="flag" value="2" /> <input
+							type="submit" value="Eliminar" />
+					</p>
+				</form>
+			</c:if>
+			<p>
+				<a href="/Votacion/jsp/home">Volver a Home</a>
+			</p>
 		</div>
-		<p>
-			<a href="/Votacion/jsp/home">Volver a Home</a>
-		</p>
-	</div>
 	</div>
 </body>
 </html>

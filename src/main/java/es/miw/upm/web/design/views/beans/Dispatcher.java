@@ -75,12 +75,10 @@ public class Dispatcher extends HttpServlet {
 				request.setAttribute(action, votarView);
 				view = votarView.process();
 			} else if (Integer.valueOf(request.getParameter("tag")) == 2) {
-				System.out.println("segunda parte");
 				votarView.setFlag(Integer.valueOf(request.getParameter("tag")));
 				votarView.setId(Integer.valueOf(request.getParameter("id")));
 				voto = new Voto();
 				voto.setIp(request.getParameter("ip"));
-				System.out.println("la ip es: " + request.getParameter("ip"));
 				voto.setNivelEstudiosType(NivelEstudiosType.valueOf(request
 						.getParameter("nivel")));
 				voto.setValor(Integer.valueOf(request.getParameter("valor")));
@@ -100,14 +98,10 @@ public class Dispatcher extends HttpServlet {
 			break;
 		case "eliminarTema":
 			EliminarTemaView eliminarTemaView = new EliminarTemaView();
-			System.out.println("eliminar - valor flag " + Integer.valueOf(request.getParameter("flag")));
 			if (Integer.valueOf(request.getParameter("flag"))==1) {
-				System.out.println("entra valor es 1");
 				eliminarTemaView.setCodigo(request.getParameter("codigo"));
 
 			} else if (Integer.valueOf(request.getParameter("flag"))==2) {
-				System.out.println("entra valor es 2 " + Integer.valueOf(request
-						.getParameter("tema")));
 				eliminarTemaView.setIdtema(Integer.valueOf(request
 						.getParameter("tema")));
 				eliminarTemaView.setFlag(2);
