@@ -17,7 +17,13 @@
 <body>
 	<div class="jumbotron">
 		<div class="container">
-			<h1>Bienvenido a la aplicaciones de votaciones</h1>
+			<div class="panel-heading">
+				<h1>
+					<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+					Votaciones<small>Bienvenido a la aplicacion de votaciones</small>
+				</h1>
+			</div>
+
 			<p>
 				<a class="btn btn-primary btn-lg" href="/Votacion/jsp/votar"
 					role="button">Votar un Tema &raquo;</a>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"        
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../bootstrap/css/bootstrap-responsive.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet" href="/..bootstrap/css/estilo.css"
+	type="text/css" />
+<script src="../bootstrap/css/bootstrap.min.css"></script>
+<title>Votaciones</title>
+</head>
+<h:body>
+	<div class="jumbotron">
+		<div class="container">
+			<div class="panel-heading">
+				<h1>
+					<span class="glyphicon glyphicon-wrench"></span> Votaciones<br />
+					<small>Bienvenido a la aplicacion de votaciones</small>
+				</h1>
+			</div>
+
+			<p>
+				<h:link href="votar.xhtml" outcome="votar.xhtml"  value="votar"/>
+			</p>
+			<p>
+				<h:link href="incorporarTema.xhtml" outcome="incorporarTema.xhtml"  value="Añadir un tema"/>
+			</p>
+			<p>
+				<h:link href="verVotaciones.xhtml" outcome="verVotaciones.xhtml"  value="Ver Votaciones"/>
+			</p>
+			<p>
+				<h:link href="eliminarTema.xhtml" outcome="eliminarTema.xhtml"  value="Eliminar Tema"/>
+			</p>
+		</div>
+	</div>
+
+</h:body>
+</html>
