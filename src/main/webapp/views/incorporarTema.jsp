@@ -1,22 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<?xml version="1.0" encoding="UTF-8"  ?>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<link href="src/main/webapp/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="src/main/webapp/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-<link rel="stylesheet" href="bootstrap/css/estilo.css" type="text/css" />
-<script src="src/main/webapp/bootstrap/css/bootstrap.min.css"></script>
+<meta charset="UTF-8">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../bootstrap/css/bootstrap-responsive.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="/..bootstrap/css/estilo.css"
+	type="text/css" />
+<script src="../bootstrap/css/bootstrap.min.css"></script>
 <title>Votacion</title>
 </head>
 <body>
 	<div class="jumbotron">
 		<div class="container">
-			<h2>
-				Formulario para añadir un tema
-			</h2>
+			<div class="panel-heading">
+				<h1>
+					<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+					Votaciones: <small>AÃ±adir un Tema</small>
+				</h1>
+			</div>
 			<c:set var="pView" scope="request" value="${tema}" />
 			<div>${pView.update()}</div>
 			<form action="/Votacion/jsp/incorporarTema" method="post">
@@ -26,7 +32,7 @@
 				<p>
 					Pregunta: <input name="pregunta" type="text" value="" />${pView.errorMsg}</p>
 				<p>
-					<input type="submit" value="Añadir" />
+					<input type="submit" value="AÃ±adir" />
 				</p>
 			</form>
 			<p>
