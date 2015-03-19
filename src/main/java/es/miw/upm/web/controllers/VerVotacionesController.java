@@ -24,9 +24,10 @@ public class VerVotacionesController extends Controller {
 	}
 
 	public Map<String, Integer> obtenerNumeroVotos() {
+		int i = 1;
 		for (Tema t : temas) {
-			votaciones.put(t.getNombre(), t.getVotos().size());
-			System.out.println(t.getNombre());
+			votaciones.put(i + " " +t.getNombre(), t.getVotos().size());
+			i++;
 		}
 		return votaciones;
 	}
@@ -34,7 +35,6 @@ public class VerVotacionesController extends Controller {
 	public Map<String, Double> getMediaVotos() {
 		for (NivelEstudiosType n : NivelEstudiosType.values()) {
 			listaMedias.put(n.name(), getMedia(n));
-			System.out.println(n.name());
 		}
 		return listaMedias;
 	}
