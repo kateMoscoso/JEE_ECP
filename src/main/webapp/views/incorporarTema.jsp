@@ -15,16 +15,16 @@
 	<div class="jumbotron">
 		<div class="container">
 			<h2>
-				Vista de <b>Incorporar Tema</b>
+				Formulario para añadir un tema
 			</h2>
 			<c:set var="pView" scope="request" value="${tema}" />
 			<div>${pView.update()}</div>
 			<form action="/Votacion/jsp/incorporarTema" method="post">
 				<p>
-					Nombre: <input name="nombre" type="text" value="nombre" />
+					Nombre: <input name="nombre" type="text" value="" />
 				</p>
 				<p>
-					Pregunta: <input name="pregunta" type="text" value="pregunta" />${pView.errorMsg}</p>
+					Pregunta: <input name="pregunta" type="text" value="" />${pView.errorMsg}</p>
 				<p>
 					<input type="submit" value="Añadir" />
 				</p>

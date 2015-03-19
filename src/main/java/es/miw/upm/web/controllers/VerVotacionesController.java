@@ -6,48 +6,54 @@ import java.util.Map;
 
 import es.miw.upm.persistence.model.utils.NivelEstudiosType;
 import es.miw.upm.persistence.models.daos.DaoFactory;
-import es.miw.upm.persistence.models.daos.TemaDao;
+import es.miw.upm.persistence.models.daos.VotoDao;
 import es.miw.upm.persistence.models.daos.jpa.DaoJpaFactory;
 import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.persistence.models.entities.Voto;
 
 public class VerVotacionesController extends Controller {
-	private TemaDao temaDao;
+	private VotoDao daoVoto;
 	private List<Tema> temas;
-	private int [] medias;
 	private Map<String, Integer> votaciones = new HashMap<String, Integer>();
-	private Map<String, Integer[]> listaMedias = new HashMap<String, Integer[]>();
-	public VerVotacionesController(){
+	private Map<String, Double> listaMedias = new HashMap<String, Double>();
+
+	public VerVotacionesController() {
 		DaoFactory.setFactory(new DaoJpaFactory());
-		temaDao = DaoFactory.getFactory().getTemaDao();
+		daoVoto = DaoFactory.getFactory().getVotoDao();
 		temas = obtenerTemas();
 	}
-	public Map<String, Integer> getNumeroVotos(){
 
-		for (Tema t: temas) {
+	public Map<String, Integer> obtenerNumeroVotos() {
+		for (Tema t : temas) {
 			votaciones.put(t.getNombre(), t.getVotos().size());
+			System.out.println(t.getNombre());
 		}
 		return votaciones;
 	}
-	public void getMediaVotos(){
-		medias = new int[NivelEstudiosType.values().length];
-		int i = 0;
-		for (Tema t: temas) {
-		}
 
+	public Map<String, Double> getMediaVotos() {
+		for (NivelEstudiosType n : NivelEstudiosType.values()) {
+			listaMedias.put(n.name(), getMedia(n));
+			System.out.println(n.name());
+		}
+		return listaMedias;
 	}
-	public int getMedia(NivelEstudiosType nivel, Tema t){
-		List<Voto> votos = t.getVotos();
+
+	public double getMedia(NivelEstudiosType nivel) {
+		List<Voto> votos = daoVoto.findAll();
+		int puntuaciones = 0;
 		int contador = 0;
-		int media = 0;
+		double media = 0.0;
 		for (Voto v : votos) {
-			if(nivel.equals(v.getNivelEstudiosType())){
+			if (nivel.equals(v.getNivelEstudiosType())) {
 				contador++;
-				media+=v.getValor();
+				puntuaciones += v.getValor();
 			}
 		}
-		return media/contador;
+		if(puntuaciones>0.0){
+			media = puntuaciones/contador;
+		}
+		return media;
 	}
-
 
 }
