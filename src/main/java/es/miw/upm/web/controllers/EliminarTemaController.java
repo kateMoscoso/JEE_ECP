@@ -6,7 +6,6 @@ import es.miw.upm.persistence.models.daos.DaoFactory;
 import es.miw.upm.persistence.models.daos.TemaDao;
 import es.miw.upm.persistence.models.daos.VotoDao;
 import es.miw.upm.persistence.models.daos.jpa.DaoJpaFactory;
-import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.persistence.models.entities.Voto;
 
 public class EliminarTemaController extends Controller{
@@ -18,12 +17,13 @@ public class EliminarTemaController extends Controller{
 		daoTema = DaoFactory.getFactory().getTemaDao();
 		daoVoto = DaoFactory.getFactory().getVotoDao();
 	}
-	public void eliminarTema(Tema tema){
-		votos = tema.getVotos();
-		daoTema.deleteById(tema.getIdTema());
+	public void eliminarTema(Integer id){
+		
+		votos = daoTema.read(id).getVotos();
 		for (Voto voto : votos) {
 			daoVoto.deleteById(voto.getIdVoto());
 		}
+		daoTema.deleteById(id);
 	}
 
 }

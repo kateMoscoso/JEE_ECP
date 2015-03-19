@@ -52,8 +52,8 @@ public class Dispatcher extends HttpServlet {
 		}
 
 		this.getServletContext()
-				.getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
-				.forward(request, response);
+		.getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
+		.forward(request, response);
 
 	}
 
@@ -67,7 +67,8 @@ public class Dispatcher extends HttpServlet {
 		switch (action) {
 		case "votar":
 			VotarView votarView = new VotarView();
-			System.out.println("Dispatcher el tag es: " + request.getParameter("tag"));
+			System.out.println("Dispatcher el tag es: "
+					+ request.getParameter("tag"));
 			if (Integer.valueOf(request.getParameter("tag")) == 1) {
 				votarView.setId(Integer.valueOf(request.getParameter("tema")));
 				votarView.setFlag(1);
@@ -99,20 +100,26 @@ public class Dispatcher extends HttpServlet {
 			break;
 		case "eliminarTema":
 			EliminarTemaView eliminarTemaView = new EliminarTemaView();
-			tema = new Tema();
-			// tema.setId_tema((Integer)(request.getParameter("id"));
-			tema.setNombre(request.getParameter("nombre"));
-			tema.setPregunta(request.getParameter("pregunta"));
-			eliminarTemaView.setTema(tema);
-			// incorporarTemaView.setTema(tema);
-			// request.setAttribute(action, incorporarTemaView);
-			// view = incorporarTemaView.process();
+			System.out.println("eliminar - valor flag " + Integer.valueOf(request.getParameter("flag")));
+			if (Integer.valueOf(request.getParameter("flag"))==1) {
+				System.out.println("entra valor es 1");
+				eliminarTemaView.setCodigo(request.getParameter("codigo"));
+
+			} else if (Integer.valueOf(request.getParameter("flag"))==2) {
+				System.out.println("entra valor es 2 " + Integer.valueOf(request
+						.getParameter("tema")));
+				eliminarTemaView.setIdtema(Integer.valueOf(request
+						.getParameter("tema")));
+				eliminarTemaView.setFlag(2);
+			}
+			request.setAttribute(action, eliminarTemaView);
+			view = eliminarTemaView.process();
 			break;
 		}
 
 		this.getServletContext()
-				.getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
-				.forward(request, response);
+		.getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
+		.forward(request, response);
 	}
 
 }
