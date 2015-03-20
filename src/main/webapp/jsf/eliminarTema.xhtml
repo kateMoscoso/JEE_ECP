@@ -1,10 +1,54 @@
-<!DOCTYPE html>
-<html>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"        
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../bootstrap/css/bootstrap-responsive.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet" href="/..bootstrap/css/estilo.css"
+	type="text/css" />
+<script src="../bootstrap/css/bootstrap.min.css"></script>
+<title>Votaciones</title>
 </head>
-<body>
+<h:body>
+	<div class="jumbotron">
+		<div class="container">
+			<div class="panel-heading">
+				<h1>
+					<span class="glyphicon glyphicon-wrench"></span> Votaciones<br />
+					<small>Formulario para eliminar un Tema</small>
+				</h1>
+			</div>
+			<h:form id="eliminarTema">
 
-</body>
+				<h:panelGrid columns="2">
+					<p>
+						Código de confirmacion:
+						<h:inputText id="codigo" value="#{eliminarTemaView.codigo}" />
+					</p>
+
+					<h:commandButton value="Enviar"
+						action="#{eliminarTemaView.process}" />
+				</h:panelGrid>
+			</h:form>
+
+			<h:form id="eliminarTema">
+
+				<h:panelGrid columns="2">
+
+					<h:selectOneMenu value="#{eliminarTemaView.tema.temaid}">
+						<f:selectItems value="#{eliminarTemaView.temas}" var="tema"
+							itemValue="#{tema.id}" itemLabel="#{tema.name}" />
+					</h:selectOneMenu>
+					<h:commandButton value="Eliminar"
+						action="#{eliminarTemaView.process}" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</div>
+
+</h:body>
 </html>
