@@ -29,7 +29,6 @@
 
 			<div class="panel-body">
 				<div class="table-responsive">
-
 					<table class="table table-striped table-condensed">
 						<tr>
 							<th>Nombre</th>
@@ -69,5 +68,5 @@
 			</p>
 		</div>
 	</div>
-	</div>
+
 </html>

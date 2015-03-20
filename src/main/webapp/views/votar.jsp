@@ -21,6 +21,7 @@
 	<div class="jumbotron">
 		<div class="container">
 			<h1>Bienvenido a la aplicaciones de votaciones</h1>
+			<c:if test="${vView.flag <0}">
 			<p>Escoga un tema a votar</p>
 				<form action="/Votacion/jsp/votar" method="post">
 					<p>
@@ -30,10 +31,45 @@
 							</c:forEach>
 						</select>
 					</p>
-					<p><input type="submit"
+					<p>
+						<input type="hidden" name="tag" value="1" /> <input type="submit"
 							value="Enviar" />
 					</p>
 				</form>
+			</c:if>
+			<c:if test="${vView.flag >0}">
+			<p>Rellene el formulario de votación </p>
+				<form action="/Votacion/jsp/votar" method="post">
+					<p>
+						Tema: ${vView.tema.nombre} <input type="hidden" name="id"
+							value="${vView.tema.idTema}" /> <br /> ${vView.tema.pregunta}
+					</p>
+					<p>
+						Tu ip es:
+						<%=request.getRemoteHost()%>
+						<input type="hidden" name="ip"
+							value="<%=request.getRemoteHost()%>" />
+					</p>
+					<p>
+						Selecciona tu nivel de estudios: <select name="nivel">
+							<c:forEach var="nivel" items="${vView. nivelEstudios}">
+								<option value="${nivel}">${nivel}</option>
+							</c:forEach>
+						</select>
+					</p>
+					<p>
+						Selecciona la puntuacion: <select name="valor">
+							<c:forEach var="valor" items="${vView. puntuacionValores}">
+								<option value="${valor}">${valor}</option>
+							</c:forEach>
+						</select>
+					</p>
+					<p>
+						<input type="hidden" name="tag" value="2" /> <input type="submit"
+							value="Enviar" />
+					</p>
+				</form>
+			</c:if>
 			<p>
 				<a href="/Votacion/jsp/home">Volver a Home</a>
 			</p>
