@@ -2,13 +2,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"        
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-    <title>JSF 2: Hola JSF</title>
-</h:head>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../bootstrap/css/bootstrap-responsive.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet" href="/..bootstrap/css/estilo.css"
+	type="text/css" />
+<script src="../bootstrap/css/bootstrap.min.css"></script>
+<title>Votaciones</title>
+</head>
 <h:body>
-    <h1>JSF 2: Hola JSF</h1>
-    <p>#{IncorporarTemaJSFBean.name}</p>
+	<div class="jumbotron">
+		<div class="container">
+			<div class="panel-heading">
+				<h1>
+					<span class="glyphicon glyphicon-wrench"></span> Votaciones<br />
+					<small>Formulario para añadir un tema</small>
+				</h1>
+			</div>
+			<h:form id="incorporarTemaBean">
+				<h:panelGrid columns="2">
+					<h:message for="nombre" style="color:red" />
+					<h:inputText id="nombre" value="#{incorporarTemaView.tema.nombre}" />
+					<!-- 					<h:outputText value="Nombre"/> -->
+					<h:message for="pregunta" style="color:red" />
+					<h:inputText id="pregunta"
+						value="#{incorporarTemaView.tema.pregunta}" />
+					<!-- 					<h:outputText  value="Pregunta"/> -->
+					<h:commandButton value="Añadir"
+						action="#{incorporarTemaView.process}" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</div>
+
 </h:body>
 </html>
