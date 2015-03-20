@@ -23,6 +23,7 @@ public class Dispatcher extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String action = request.getPathInfo().substring(1);
+		
 
 		String view;
 		switch (action) {
@@ -31,7 +32,13 @@ public class Dispatcher extends HttpServlet {
 			request.setAttribute(action, votoView);
 			view = action;
 			break;
-
+		case "votarTema":
+			//Integer id = Integer.valueOf(request.getPathInfo().substring(2));
+			VotarTemaView votarTemaView = new VotarTemaView();
+			//votarTemaView.setId(id);
+			request.setAttribute(action, votarTemaView);
+			view = action;
+			break;
 		case "verVotaciones":
 			VerVotacionesView verVotacionesView = new VerVotacionesView();
 			request.setAttribute(action, verVotacionesView);
@@ -67,25 +74,18 @@ public class Dispatcher extends HttpServlet {
 		switch (action) {
 		case "votar":
 			VotarView votarView = new VotarView();
-			System.out.println("Dispatcher el tag es: "
-					+ request.getParameter("tag"));
-			if (Integer.valueOf(request.getParameter("tag")) == 1) {
-				votarView.setId(Integer.valueOf(request.getParameter("tema")));
-				votarView.setFlag(1);
-				request.setAttribute(action, votarView);
-				view = votarView.process();
-			} else if (Integer.valueOf(request.getParameter("tag")) == 2) {
-				votarView.setFlag(Integer.valueOf(request.getParameter("tag")));
-				votarView.setId(Integer.valueOf(request.getParameter("id")));
-				voto = new Voto();
-				voto.setIp(request.getParameter("ip"));
-				voto.setNivelEstudiosType(NivelEstudiosType.valueOf(request
-						.getParameter("nivel")));
-				voto.setValor(Integer.valueOf(request.getParameter("valor")));
-				votarView.setVoto(voto);
-				request.setAttribute(action, votarView);
-				view = votarView.process();
-			}
+			votarView.setId(Integer.valueOf(request.getParameter("tema")));
+			request.setAttribute(action, votarView);
+			view = votarView.process();
+		case"votarTema":
+			VotarTemaView votarTemaView = new VotarTemaView();
+			votarTemaView.setId(Integer.valueOf(request.getParameter("id")));
+			voto = new Voto(request.getParameter("ip"),
+					NivelEstudiosType.valueOf(request.getParameter("nivel")), Integer.valueOf(request.getParameter("valor")));
+			votarTemaView.setVoto(voto);
+			request.setAttribute(action, votarTemaView);
+			view = votarTemaView.process();
+
 			break;
 		case "incorporarTema":
 			IncorporarTemaView incorporarTemaView = new IncorporarTemaView();

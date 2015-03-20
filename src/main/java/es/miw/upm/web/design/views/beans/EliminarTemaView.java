@@ -75,7 +75,7 @@ public class EliminarTemaView {
 			eliminarTemaController.eliminarTema(idtema);
 			view = "home";
 		}
-		else if (codigo.equals("666")) {
+		else if (eliminarTemaController.comporbarAutorizacion(codigo)) {
 			flag = 2;
 			view = "eliminarTema";
 		}

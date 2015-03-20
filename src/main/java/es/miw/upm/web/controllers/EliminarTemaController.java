@@ -12,6 +12,7 @@ public class EliminarTemaController extends Controller {
 	private TemaDao daoTema;
 	private VotoDao daoVoto;
 	private List<Voto> votos;
+	public static String CODIGO="666";
 
 	public EliminarTemaController() {
 		DaoFactory.setFactory(new DaoJpaFactory());
@@ -26,6 +27,9 @@ public class EliminarTemaController extends Controller {
 			daoVoto.deleteById(voto.getIdVoto());
 		}
 		daoTema.deleteById(id);
+	}
+	public boolean comporbarAutorizacion(String codigo){
+		return codigo.equals(CODIGO);
 	}
 
 }
