@@ -24,13 +24,13 @@
 			</div>
 			<h:form id="incorporarTemaBean">
 				<h:panelGrid columns="2">
-					<h:message for="nombre" style="color:red" />
+					<p> Nombre: 
 					<h:inputText id="nombre" value="#{incorporarTemaView.tema.nombre}" />
-					<!-- 					<h:outputText value="Nombre"/> -->
-					<h:message for="pregunta" style="color:red" />
+ 					</p>
+ 					<p>Pregunta: 
 					<h:inputText id="pregunta"
 						value="#{incorporarTemaView.tema.pregunta}" />
-					<!-- 					<h:outputText  value="Pregunta"/> -->
+						</p>
 					<h:commandButton value="Añadir"
 						action="#{incorporarTemaView.process}" />
 				</h:panelGrid>

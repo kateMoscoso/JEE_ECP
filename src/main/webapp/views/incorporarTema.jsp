@@ -27,10 +27,10 @@
 			<div>${pView.update()}</div>
 			<form action="/Votacion/jsp/incorporarTema" method="post">
 				<p>
-					Nombre: <input name="nombre" type="text" value="" />
+					Nombre: <input name="nombre" type="text" value="" required/>
 				</p>
 				<p>
-					Pregunta: <input name="pregunta" type="text" value="" />${pView.errorMsg}</p>
+					Pregunta: <input name="pregunta" type="text" value="" required/>${pView.errorMsg}</p>
 				<p>
 					<input type="submit" value="Añadir" />
 				</p>
@@ -39,6 +39,6 @@
 				<a href="/Votacion/jsp/home">Volver a Home</a>
 			</p>
 		</div>
-	</div>
+	</div> 
 </body>
 </html>
