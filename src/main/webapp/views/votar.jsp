@@ -22,7 +22,7 @@
 		<div class="container">
 			<h1>Bienvenido a la aplicaciones de votaciones</h1>
 			<c:if test="${vView.flag <0}">
-			<p>Escoga un tema a votar</p>
+				<p>Escoga un tema a votar</p>
 				<form action="/Votacion/jsp/votar" method="post">
 					<p>
 						Temas a votar: <select name="tema">
@@ -38,7 +38,7 @@
 				</form>
 			</c:if>
 			<c:if test="${vView.flag >0}">
-			<p>Rellene el formulario de votación </p>
+				<p>Rellene el formulario de votación</p>
 				<form action="/Votacion/jsp/votar" method="post">
 					<p>
 						Tema: ${vView.tema.nombre} <input type="hidden" name="id"

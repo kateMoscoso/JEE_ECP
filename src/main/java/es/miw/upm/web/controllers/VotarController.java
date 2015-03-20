@@ -18,13 +18,18 @@ public class VotarController extends Controller {
 		daoTema = DaoFactory.getFactory().getTemaDao();
 		daoVoto = DaoFactory.getFactory().getVotoDao();
 	}
-	public void añadirVoto(Integer id, Voto voto){		
-		System.out.println(tema.getVotos());
-		this.tema = daoTema.read(id);
-		this.voto = new Voto(voto.getIp(),voto.getNivelEstudiosType(), voto.getValor());
-		daoVoto.create(this.voto);
-		this.tema.getVotos().add(voto);
-		daoTema.update(tema);
+	public void addVoto(Tema t, Voto v){
+		System.out.println("entra controller");
+		System.out.println(t.getVotos());
+//		this.tema = daoTema.read(id);
+		voto = new Voto();
+		voto.setIp(v.getIp());
+		voto.setNivelEstudiosType(v.getNivelEstudiosType());
+		voto.setValor(v.getValor());
+		System.out.println(voto.toString());
+		daoVoto.create(voto);
+		t.getVotos().add(voto);
+		daoTema.update(t);
 	}
 	public Tema obtenerTema(int id){
 		return daoTema.read(id);
