@@ -11,30 +11,31 @@
 <link rel="stylesheet" href="/..bootstrap/css/estilo.css"
 	type="text/css" />
 <script src="../bootstrap/css/bootstrap.min.css"></script>
-<title>Votaciones</title>
+<f:view locale="#{i18n.locale}"></f:view>
+<title>#{msgs.votaciones}</title>
 </head>
 <h:body>
+<f:event listener="#{votarView.update}" type="preRenderComponent"></f:event>
 	<div class="jumbotron">
 		<div class="container">
 			<div class="panel-heading">
 				<h1>
-					<span class="glyphicon glyphicon-wrench"></span> Votaciones<br />
-					<small>Formulario para votar un Tema</small>
+					<span class="glyphicon glyphicon-wrench"></span>#{msgs.votaciones}<br />
+					<small>#{msgs.formVotarTitulo}</small>
 				</h1>
 			</div>
-			<h:form id="incorporarTemaBean">
+			<h:form id="votarTemaBean">
 				<h:panelGrid columns="2">
-					<h:message for="nombre" style="color:red" />
-					<h:inputText id="nombre" value="#{incorporarTemaView.tema.nombre}" />
-					<!-- 					<h:outputText value="Nombre"/> -->
-					<h:message for="pregunta" style="color:red" />
-					<h:inputText id="pregunta"
-						value="#{incorporarTemaView.tema.pregunta}" />
-					<!-- 					<h:outputText  value="Pregunta"/> -->
-					<h:commandButton value="Añadir"
-						action="#{incorporarTemaView.process}" />
+<!-- 					<f:selectItems var="tema" itemLabel="#{tema.nombre}" -->
+<!-- 						itemValue="#{tema.id}" value="#{votarView.temas}"></f:selectItems> -->
+					<h:selectOneMenu value="#{votarView.nivelEstudios}">
+						<f:selectItems var="nivel" itemLabel="#{nivel}"
+							itemValue="#{nivel}"
+							value="#{votarView.nivelEstudios}"></f:selectItems>
+					</h:selectOneMenu>
 				</h:panelGrid>
 			</h:form>
+			<h:link value="#{msgs.home}" outcome="home"></h:link>
 		</div>
 	</div>
 

@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="/..bootstrap/css/estilo.css"
 	type="text/css" />
 <script src="../bootstrap/css/bootstrap.min.css"></script>
-<title>Votaciones</title>
+<f:view locale="#{i18n.locale}"></f:view>
+<title>#{msgs.votaciones}</title>
 </head>
 <h:body>
 	<div class="jumbotron">
@@ -19,25 +20,25 @@
 			<div class="panel-heading">
 
 				<h1>
-					<span class="glyphicon glyphicon-wrench"></span> Votaciones<br />
-					<small>Bienvenido a la aplicacion de votaciones</small>
+					<span class="glyphicon glyphicon-wrench"></span>#{msgs.votaciones}<br />
+					<small>#{msgs.bienvenido}</small>
 				</h1>
 			</div>
 
 			<p>
-				<h:link href="votar.xhtml" outcome="votar.xhtml" value="votar" />
+				<h:link href="votar.xhtml" outcome="votar.xhtml" value="#{msgs.votar}" />
 			</p>
 			<p>
 				<h:link href="incorporarTema.xhtml" outcome="incorporarTema.xhtml"
-					value="Añadir un tema" />
+					value="#{msgs.incorporarTema}" />
 			</p>
 			<p>
 				<h:link href="verVotaciones.xhtml" outcome="verVotaciones.xhtml"
-					value="Ver Votaciones" />
+					value="#{msgs.mostrar}" />
 			</p>
 			<p>
 				<h:link href="eliminarTema.xhtml" outcome="eliminarTema.xhtml"
-					value="Eliminar Tema" />
+					value="#{msgs.eliminarTema}" />
 			</p>
 		</div>
 	</div>
