@@ -24,10 +24,16 @@
 					<small>#{msgs.formVotarTitulo}</small>
 				</h1>
 			</div>
+			<h:form>
+				<h:panelGroup rendered="#{votarView.id==null}">
+				<h:selectOneMenu value="#{votarView.temas}">
+						<f:selectItems var="tema" itemLabel="#{tema.nombre}"
+							itemValue="#{tema.idTema}" value="#{votarView.temas}"></f:selectItems>
+					</h:selectOneMenu>
+				</h:panelGroup>
+			</h:form>
 			<h:form id="votarTema">
-				<h:panelGrid columns="4">
-					<!-- 					<f:selectItems var="tema" itemLabel="#{tema.nombre}" -->
-					<!-- 						itemValue="#{tema.id}" value="#{votarView.temas}"></f:selectItems> -->
+				<h:panelGroup rendered="#{votarView.id!=null}">
 					<h:selectOneMenu value="#{votarView.nivelEstudios}">
 						<f:selectItems var="nivel" itemLabel="#{nivel}"
 							itemValue="#{nivel}" value="#{votarView.nivelEstudios}"></f:selectItems>
@@ -36,7 +42,7 @@
 						<f:selectItems var="valor" itemLabel="#{valor}"
 							itemValue="#{valor}" value="#{votarView.puntuacionValores}"></f:selectItems>
 					</h:selectOneMenu>
-				</h:panelGrid>
+				</h:panelGroup>
 			</h:form>
 			<h:link value="#{msgs.home}" outcome="home"></h:link>
 		</div>
