@@ -3,43 +3,76 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
-<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="../bootstrap/css/bootstrap-responsive.min.css"
+<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../bootstrap/css/bootstrap-responsive.min.css"
 	rel="stylesheet" />
-<link rel="stylesheet" href="/..bootstrap/css/estilo.css"
+<link rel="stylesheet" href="../../bootstrap/css/estilo.css"
 	type="text/css" />
-<script src="../bootstrap/css/bootstrap.min.css"></script>
-<title>Votaciones</title>
+<script src="../../bootstrap/css/bootstrap.min.css"></script>
+<title>#{msgs.votaciones}</title>
 </head>
 <h:body>
+	<f:event listener="#{verVotacionesView.update}"
+		type="preRenderComponent"></f:event>
 	<div class="jumbotron">
 		<div class="container">
 			<div class="panel-heading">
 				<h1>
-					<span class="glyphicon glyphicon-wrench"></span> Votaciones<br />
-					<small>Formulario para añadir un tema</small>
+					<span class="glyphicon glyphicon-wrench"></span>#{msgs.votaciones}<br />
+					<small>#{msgs.lista}</small>
 				</h1>
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
 					<table class="table table-striped table-condensed">
 						<tr>
-							<th>Nombre</th>
+							<th>#{msgs.lista}</th>
 							<th>Valor</th>
 						</tr>
-<!-- 						<f:selectItems value="#{eliminarTemaView.temas}" var="tema" -->
-<!-- 							itemValue="#{tema.id}" itemLabel="#{tema.name}" > -->
-<!-- 							<tr> -->
-<!-- 							<td></td></tr></f:selectItems> -->
-		
+						<h:dataTable border="1"
+							value="#{verVotacionesView.votaciones.entrySet().toArray()}"
+							var="entry">
+							<h:column id="column1">
+								<f:facet name="header">
+									<h:outputText value="UserId"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{entry.key}"></h:outputText>
+							</h:column>
+							<h:column id="column2">
+								<f:facet name="header">
+									<h:outputText value="Email Id"></h:outputText>
+								</f:facet>
+								<h:outputText value="#{entry.value}"></h:outputText>
+							</h:column>
+						</h:dataTable>
+						<br></br>
+						<h:dataTable>
+							<tbody>
+
+								<ui:repeat var="entry"
+									value="#{verVotacionesView.medias.entrySet().toArray()}"
+									>
+									<h:outputText value="#{entry.value}"></h:outputText>
+								</ui:repeat>
+							</tbody>
+						</h:dataTable>
+						<f:selectItems var="valor" itemLabel="#{valor}"
+							itemValue="#{valor}"
+							value="#{verVotacionesView.votaciones.entrySet().toArray()}">
+							<h:outputText value="#{valor.value}"></h:outputText>
+						</f:selectItems>
+						<!-- 						<f:selectItems value="#{eliminarTemaView.temas}" var="tema" -->
+						<!-- 							itemValue="#{tema.id}" itemLabel="#{tema.name}" > -->
+						<!-- 							<tr> -->
+						<!-- 							<td></td></tr></f:selectItems> -->
+
 					</table>
 				</div>
 			</div>
-			<h:form id="incorporarTema">
-				
-			</h:form>
+			<h:link value="#{msgs.home}" outcome="home"></h:link>
 		</div>
 	</div>
 
