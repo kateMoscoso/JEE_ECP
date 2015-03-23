@@ -16,7 +16,7 @@ import es.miw.upm.persistence.models.entities.Voto;
 public class Dispatcher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static String PATH_ROOT_VIEW = "/views/";
+	private static String PATH_ROOT_VIEW = "/views/jsp/";
 
 	@Override
 	protected void doGet(HttpServletRequest request,

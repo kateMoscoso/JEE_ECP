@@ -12,6 +12,7 @@ public class IncorporarTemaView {
 
 	public IncorporarTemaView() {
 		incorporarTemaController = new IncorporarTemaController();
+		tema = new Tema();
 	}
 
 	public String getErrorMsg() {
