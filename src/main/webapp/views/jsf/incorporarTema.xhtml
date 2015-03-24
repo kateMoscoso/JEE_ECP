@@ -25,13 +25,15 @@
 			</div>
 			<h:form id="incorporarTema">
 				<h:panelGrid columns="2">
-					<p> #{msgs.nombre} 
-					<h:inputText id="nombre" value="#{incorporarTemaView.tema.nombre}" />
- 					</p>
- 					<p>#{msgs.pregunta}
-					<h:inputText id="pregunta"
-						value="#{incorporarTemaView.tema.pregunta}" />
-						</p>
+					<p>
+						#{msgs.nombre}
+						<h:inputText id="nombre" value="#{incorporarTemaView.tema.nombre}" />
+					</p>
+					<p>
+						#{msgs.pregunta}
+						<h:inputText id="pregunta"
+							value="#{incorporarTemaView.tema.pregunta}" />
+					</p>
 					<h:commandButton value="Añadir" type="submit"
 						action="#{incorporarTemaView.process}" />
 				</h:panelGrid>
