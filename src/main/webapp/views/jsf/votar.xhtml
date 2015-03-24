@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../../bootstrap/css/estilo.css"
 	type="text/css" />
 <script src="../../bootstrap/css/bootstrap.min.css"></script>
-<f:view locale="#{i18n.locale}"></f:view>
+<!-- <f:view locale="#{i18n.locale}"></f:view> -->
 <title>#{msgs.votaciones}</title>
 </head>
 <h:body>
@@ -21,27 +21,40 @@
 			<div class="panel-heading">
 				<h1>
 					<span class="glyphicon glyphicon-wrench"></span>#{msgs.votaciones}<br />
-					<small>#{msgs.formVotarTitulo}</small>
+					<small></small>
 				</h1>
 			</div>
 			<h:form>
 				<h:panelGroup rendered="#{votarView.id==null}">
-				<h:selectOneMenu value="#{votarView.temas}">
-						<f:selectItems var="tema" itemLabel="#{tema.nombre}"
-							itemValue="#{tema.idTema}" value="#{votarView.temas}"></f:selectItems>
+
+					<h:selectOneMenu value="#{votarView.id}">
+						<f:selectItems value="#{votarView.temas}" var="tema"
+							itemValue="#{tema.idTema}" itemLabel="#{tema.nombre}" />
 					</h:selectOneMenu>
+					<h:inputHidden id="flag" value="1"></h:inputHidden>
+					<h:commandButton value="submit" type="submit"
+						action="#{votarView.process}" />
 				</h:panelGroup>
-			</h:form>
-			<h:form id="votarTema">
 				<h:panelGroup rendered="#{votarView.id!=null}">
-					<h:selectOneMenu value="#{votarView.nivelEstudios}">
+					<p>
+						#{msgs.nombre}
+						<h:outputText id="nombre" value="#{votarView.tema.nombre}" />
+					</p>
+					<p>
+						#{msgs.pregunta}
+						<h:outputText id="pregunta" value="#{votarView.tema.pregunta}" />
+					</p>
+					<h:selectOneMenu value="#{votarView.voto.nivelEstudiosType}">
 						<f:selectItems var="nivel" itemLabel="#{nivel}"
 							itemValue="#{nivel}" value="#{votarView.nivelEstudios}"></f:selectItems>
 					</h:selectOneMenu>
-					<h:selectOneMenu value="#{votarView.puntuacionValores}">
+					<h:selectOneMenu value="#{votarView.voto.valor}">
 						<f:selectItems var="valor" itemLabel="#{valor}"
 							itemValue="#{valor}" value="#{votarView.puntuacionValores}"></f:selectItems>
 					</h:selectOneMenu>
+					<br/>
+					<h:commandButton value="submit" type="submit"
+						action="#{votarView.process}" />
 				</h:panelGroup>
 			</h:form>
 			<h:link value="#{msgs.home}" outcome="home"></h:link>

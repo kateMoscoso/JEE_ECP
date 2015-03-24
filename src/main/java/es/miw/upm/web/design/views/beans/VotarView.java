@@ -4,7 +4,11 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.logging.log4j.LogManager;
+
 import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.persistence.models.entities.Voto;
 import es.miw.upm.web.controllers.VotarController;
@@ -106,8 +110,17 @@ public class VotarView {
 		if (this.getId() != null) {
 			tema = votarController.obtenerTema(id);
 			System.out.println("el tema es: " + tema.toString());
-			System.out.println("el voto es: " + voto.getIp());
+
+			System.out.println("el voto es: " + voto.toString());
 			if (!voto.isEmpty()) {
+				System.out.println("entra voto no es null");
+				HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance()
+						.getExternalContext().getRequest();
+				String ipAddress = request.getHeader("X-FORWARDED-FOR");
+				if (ipAddress == null) {
+					ipAddress = request.getRemoteAddr();
+				}
+				voto.setIp(ipAddress);
 				System.out.println("entra en voto no es empty"+voto.toString());
 				System.out.println("entra process" + tema.toString());
 				votarController.addVoto(tema, voto);
