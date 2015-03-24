@@ -21,7 +21,7 @@
 	<div class="jumbotron">
 		<div class="container">
 			<h1>Bienvenido a la aplicaciones de votaciones</h1>
-			<c:if test="${vView.flag <0}">
+			<c:if test="${vView.tema.idTema == null}">
 				<p>Escoga un tema a votar</p>
 				<form action="/Votacion/jsp/votar" method="post">
 					<p>
@@ -32,12 +32,12 @@
 						</select>
 					</p>
 					<p>
-						<input type="hidden" name="tag" value="1" /> <input type="submit"
-							value="Enviar" />
+						<input type="hidden" name="tag" value="1" /> 
+						 <input type="submit" value="Enviar" />
 					</p>
 				</form>
 			</c:if>
-			<c:if test="${vView.flag >0}">
+			<c:if test="${vView.tema.idTema >0}">
 				<p>Rellene el formulario de votación</p>
 				<form action="/Votacion/jsp/votar" method="post">
 					<p>
