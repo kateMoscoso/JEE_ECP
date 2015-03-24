@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.persistence.models.entities.Voto;
 import es.miw.upm.web.controllers.VotarController;
+
 @ManagedBean
 public class VotarView {
 	private String errorMsg;
@@ -22,6 +23,8 @@ public class VotarView {
 
 	public VotarView() {
 		votarController = new VotarController();
+		tema = new Tema();
+		voto = new Voto();
 	}
 
 	public String getErrorMsg() {
@@ -33,7 +36,7 @@ public class VotarView {
 	}
 
 	public Tema getTema() {
-		return tema;
+		return tema; 
 	}
 
 	public void setTema(Tema tema) {
@@ -87,31 +90,28 @@ public class VotarView {
 	public void setFlag(Integer flag) {
 		this.flag = flag;
 	}
-	
 
 	@PostConstruct
 	public void update() {
 		LogManager.getLogger(VotarView.class).debug(
 				"Se accede a la capa de negocio para recuperar roles");
 		temas = votarController.obtenerTemas();
-		System.out.println("despues de obtener temas" + temas.size());
 		nivelEstudios = votarController.obtenerNivelEstudios();
-		System.out.println("despues de obtener Nivel de Estudios" + nivelEstudios.length);
 		puntuacionValores = votarController.obtenerValoresVotacion();
-		System.out.println("despues de puntuacions" + puntuacionValores.length);
 	}
 
 	public String process() {
 		String view = "votar";
-		System.out.println("el flag en view es: " + this.flag);
+		System.out.println("el flag en view es: " + flag);
 		if (this.getId() != null) {
 			tema = votarController.obtenerTema(id);
-			if (this.getFlag() == 2) {
-				System.out.println(voto.toString());
-				System.out.println("entra process"+tema.toString());
+			System.out.println("el tema es: " + tema.toString());
+			System.out.println("el voto es: " + voto.getIp());
+			if (!voto.isEmpty()) {
+				System.out.println("entra en voto no es empty"+voto.toString());
+				System.out.println("entra process" + tema.toString());
 				votarController.addVoto(tema, voto);
 				view = "home";
-				this.flag = -1;
 			}
 		}
 		return view;

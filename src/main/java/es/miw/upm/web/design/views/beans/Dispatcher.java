@@ -68,16 +68,19 @@ public class Dispatcher extends HttpServlet {
 		switch (action) {
 		case "votar":
 			VotarView votarView = new VotarView();
-			System.out.println("Dispatcher el tag es: "
-					+ request.getParameter("tag"));
-			if (Integer.valueOf(request.getParameter("tag")) == 1) {
-				votarView.setId(Integer.valueOf(request.getParameter("tema")));
-				votarView.setFlag(1);
-				request.setAttribute(action, votarView);
-				view = votarView.process();
-			} else if (Integer.valueOf(request.getParameter("tag")) == 2) {
-				votarView.setFlag(Integer.valueOf(request.getParameter("tag")));
+			System.out.println("El tag: "+request.getParameter("tag"));
+			
+			if (Integer.valueOf(request.getParameter("tag")) ==1 ){
+				if(Integer.valueOf(request.getParameter("tema")) != null) {
+					votarView.getTema().setIdTema(Integer.valueOf(request.getParameter("tema")));
+					votarView.setId(Integer.valueOf(request.getParameter("tema")));
+					request.setAttribute(action, votarView);
+					view = votarView.process();
+				}
+			}
+			if (Integer.valueOf(request.getParameter("tag")) == 2) {
 				votarView.setId(Integer.valueOf(request.getParameter("id")));
+				System.out.println("votar");
 				voto = new Voto();
 				voto.setIp(request.getParameter("ip"));
 				voto.setNivelEstudiosType(NivelEstudiosType.valueOf(request
@@ -86,6 +89,7 @@ public class Dispatcher extends HttpServlet {
 				votarView.setVoto(voto);
 				request.setAttribute(action, votarView);
 				view = votarView.process();
+
 			}
 			break;
 		case "incorporarTema":

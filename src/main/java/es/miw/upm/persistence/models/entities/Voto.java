@@ -89,6 +89,9 @@ public class Voto {
 		return result;
 
 	}
+	public boolean isEmpty(){
+		return id==null&&ip==null&&nivelEstudiosType==null&&valor==null;
+	}
 
 	@Override
 	public String toString() {
