@@ -105,14 +105,15 @@ public class Dispatcher extends HttpServlet {
 			EliminarTemaView eliminarTemaView = new EliminarTemaView();
 			if (Integer.valueOf(request.getParameter("flag"))==1) {
 				eliminarTemaView.setCodigo(request.getParameter("codigo"));
-
+				view = eliminarTemaView.process();
 			} else if (Integer.valueOf(request.getParameter("flag"))==2) {
 				eliminarTemaView.setIdtema(Integer.valueOf(request
 						.getParameter("tema")));
 				eliminarTemaView.setFlag("2");
+				view = eliminarTemaView.eliminar();
 			}
 			request.setAttribute(action, eliminarTemaView);
-			view = eliminarTemaView.process();
+			
 			break;
 		}
 
