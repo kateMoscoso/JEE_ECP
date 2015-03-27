@@ -103,6 +103,7 @@ public class Dispatcher extends HttpServlet {
 			break;
 		case "eliminarTema":
 			EliminarTemaView eliminarTemaView = new EliminarTemaView();
+			request.setAttribute(action, eliminarTemaView);
 			if (request.getParameter("flag")=="noAuth") {
 				eliminarTemaView.setCodigo(request.getParameter("codigo"));
 				view = eliminarTemaView.process();
@@ -112,7 +113,7 @@ public class Dispatcher extends HttpServlet {
 				eliminarTemaView.setFlag("2");
 				view = eliminarTemaView.eliminar();
 			}
-			request.setAttribute(action, eliminarTemaView);
+			
 			
 			break;
 		}
