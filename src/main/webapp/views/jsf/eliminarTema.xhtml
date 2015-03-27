@@ -40,7 +40,7 @@
 						<f:selectItems var="tema" value="#{eliminarTemaView.temas}"
 							itemValue="#{tema.idTema}" itemLabel="#{tema.nombre}" />
 					</h:selectOneMenu>
-					<h:commandButton value="Eliminar" type="submit"
+					<h:commandButton value="#{msgs.eliminarTema}" type="submit"
 						action="#{eliminarTemaView.eliminar}" />
 				</h:panelGroup>
 			</h:form>
