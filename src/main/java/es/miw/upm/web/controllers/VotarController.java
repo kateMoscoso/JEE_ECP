@@ -1,5 +1,8 @@
 package es.miw.upm.web.controllers;
 
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+
 import es.miw.upm.persistence.model.utils.NivelEstudiosType;
 import es.miw.upm.persistence.models.daos.DaoFactory;
 import es.miw.upm.persistence.models.daos.TemaDao;
@@ -11,7 +14,6 @@ import es.miw.upm.persistence.models.entities.Voto;
 public class VotarController extends Controller {
 	private TemaDao daoTema;
 	private VotoDao daoVoto;
-	private Tema tema;
 	private Voto voto;
 	public VotarController(){
 		DaoFactory.setFactory(new DaoJpaFactory());
@@ -19,14 +21,7 @@ public class VotarController extends Controller {
 		daoVoto = DaoFactory.getFactory().getVotoDao();
 	}
 	public void addVoto(Tema t, Voto v){
-		System.out.println("entra controller");
-		System.out.println(t.getVotos());
-//		this.tema = daoTema.read(id);
-		voto = new Voto();
-		voto.setIp(v.getIp());
-		voto.setNivelEstudiosType(v.getNivelEstudiosType());
-		voto.setValor(v.getValor());
-		System.out.println(voto.toString());
+		voto = new Voto(v.getIp(),v.getNivelEstudiosType(),v.getValor());
 		daoVoto.create(voto);
 		t.getVotos().add(voto);
 		daoTema.update(t);
@@ -45,6 +40,11 @@ public class VotarController extends Controller {
 			i++;
 		}
 		return nivelEstudios;
+	}
+	public String obtenerIP(){
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance()
+				.getExternalContext().getRequest();
+		return request.getRemoteAddr();		
 	}
 
 }

@@ -5,8 +5,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -121,11 +119,7 @@ public class VotarView {
 			if (voto.getNivelEstudiosType()!=null) {
 				System.out.println("entra voto no es null");
 				if (voto.getIp() == null) {
-					HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance()
-							.getExternalContext().getRequest();
-					String ipAddress = request.getHeader("X-FORWARDED-FOR");
-					ipAddress = request.getRemoteAddr();
-					voto.setIp(ipAddress);
+					voto.setIp(votarController.obtenerIP());
 				}
 				votarController.addVoto(tema, voto);
 				view = "home";
