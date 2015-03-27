@@ -103,10 +103,10 @@ public class Dispatcher extends HttpServlet {
 			break;
 		case "eliminarTema":
 			EliminarTemaView eliminarTemaView = new EliminarTemaView();
-			if (Integer.valueOf(request.getParameter("flag"))==1) {
+			if (request.getParameter("flag")=="noAuth") {
 				eliminarTemaView.setCodigo(request.getParameter("codigo"));
 				view = eliminarTemaView.process();
-			} else if (Integer.valueOf(request.getParameter("flag"))==2) {
+			} else if (request.getParameter("flag")=="Auth") {
 				eliminarTemaView.setIdtema(Integer.valueOf(request
 						.getParameter("tema")));
 				eliminarTemaView.setFlag("2");
