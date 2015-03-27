@@ -15,21 +15,14 @@ public class EliminarTemaView {
 	private Integer idtema;
 	private List<Tema> temas;
 	private String codigo;
-	private Integer flag =-1;
+	private String flag ;
 
-
-	public Integer getFlag() {
-		return flag;
-	}
-
-	public void setFlag(Integer flag) {
-		this.flag = flag;
-	}
 
 	private EliminarTemaController eliminarTemaController;
 
 	public EliminarTemaView() {
 		eliminarTemaController = new EliminarTemaController();
+		flag = "noAuth";
 	}
 
 	public String getErrorMsg() {
@@ -63,6 +56,14 @@ public class EliminarTemaView {
 		this.codigo = codigo;
 	}
 
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
 	public void update() {
 		LogManager.getLogger(EliminarTemaView.class).debug(
 				"Se accede a la capa de negocio para recuperar los temas");
@@ -71,20 +72,20 @@ public class EliminarTemaView {
 
 	public String process() {
 		String view = "home";
-		if (flag==2) {
-			eliminarTemaController.eliminarTema(idtema);
-			view = "home";
-		}
-		else if (eliminarTemaController.comporbarAutorizacion(codigo)) {
-			flag = 2;
+		if (!codigo.isEmpty() && eliminarTemaController.comporbarAutorizacion(codigo)) {
 			view = "eliminarTema";
+			flag = "Auth";
 		}
 		else {
-			flag =-1;
 			errorMsg ="Valor introducido incorrectamente";
+			codigo="";
 			view = "eliminarTema";
 		}
-		
 		return view;
 	}
+	public String eliminarTema(){
+		eliminarTemaController.eliminarTema(idtema);
+		String view = "home";
+		return view;
+	}	
 }
