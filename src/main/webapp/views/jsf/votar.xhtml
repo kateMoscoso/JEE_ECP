@@ -32,7 +32,8 @@
 							itemValue="#{tema.idTema}" itemLabel="#{tema.nombre}" />
 					</h:selectOneMenu>
 					<h:inputHidden id="flag" value="1"></h:inputHidden>
-					<h:commandButton value="submit" type="submit"
+					</br>
+					<h:commandButton value="#{msgs.escoger}" type="submit"
 						action="#{votarView.process}" />
 				</h:panelGroup>
 				<h:panelGroup rendered="#{votarView.id!=null}">
@@ -53,7 +54,8 @@
 							itemValue="#{valor}" value="#{votarView.puntuacionValores}"></f:selectItems>
 					</h:selectOneMenu>
 					<br/>
-					<h:commandButton value="submit" type="submit"
+					
+					<h:commandButton value="votar" type="submit"
 						action="#{votarView.process}" />
 				</h:panelGroup>
 			</h:form>

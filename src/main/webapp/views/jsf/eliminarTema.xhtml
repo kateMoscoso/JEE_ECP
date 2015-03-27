@@ -5,13 +5,13 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <head>
-<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="../bootstrap/css/bootstrap-responsive.min.css"
+<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../bootstrap/css/bootstrap-responsive.min.css"
 	rel="stylesheet" />
-<link rel="stylesheet" href="/..bootstrap/css/estilo.css"
+<link rel="stylesheet" href=".../..bootstrap/css/estilo.css"
 	type="text/css" />
 <script src="../bootstrap/css/bootstrap.min.css"></script>
-<title>Votaciones</title>
+<title>#{msgs.votaciones}</title>
 </head>
 <h:body>
 <f:event listener="#{eliminarTemaView.update}" type="preRenderComponent"></f:event>
@@ -19,14 +19,14 @@
 		<div class="container">
 			<div class="panel-heading">
 				<h1>
-					<span class="glyphicon glyphicon-wrench"></span> Votaciones<br />
-					<small>Formulario para eliminar un Tema</small>
+					<span class="glyphicon glyphicon-wrench"></span>#{msgs.votaciones}<br />
+					<small>#{msgs.formEliminarTema}</small>
 				</h1>
 			</div>
 			<h:form>
 				<h:panelGroup rendered="#{empty eliminarTemaView.codigo}">
 					<p>
-						Código de confirmacion:
+						#{msgs.codigo}
 						<h:inputText id="codigo" value="#{eliminarTemaView.codigo}" />
 					</p>
 					<h:panelGroup rendered="#{not empty eliminarTemaView.errorMsg}">
