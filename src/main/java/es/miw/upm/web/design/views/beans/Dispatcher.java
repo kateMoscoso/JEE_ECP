@@ -103,14 +103,17 @@ public class Dispatcher extends HttpServlet {
 			break;
 		case "eliminarTema":
 			EliminarTemaView eliminarTemaView = new EliminarTemaView();
-			request.setAttribute(action, eliminarTemaView);
-			if (request.getParameter("flag")=="noAuth") {
+			
+			System.out.println("Dispatcher flag: "+request.getParameter("flag"));
+			if ("noAuth".equals(request.getParameter("flag"))) {
 				eliminarTemaView.setCodigo(request.getParameter("codigo"));
+				request.setAttribute(action, eliminarTemaView);
 				view = eliminarTemaView.process();
-			} else if (request.getParameter("flag")=="Auth") {
+			} else if ("Auth".equals(request.getParameter("flag"))) {
 				eliminarTemaView.setIdtema(Integer.valueOf(request
 						.getParameter("tema")));
-				eliminarTemaView.setFlag("2");
+				eliminarTemaView.setFlag("Auth");
+				request.setAttribute(action, eliminarTemaView);
 				view = eliminarTemaView.eliminar();
 			}
 			
