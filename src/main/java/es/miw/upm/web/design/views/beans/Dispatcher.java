@@ -51,7 +51,6 @@ public class Dispatcher extends HttpServlet {
 		default:
 			view = "home";
 		}
-
 		this.getServletContext()
 		.getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
 		.forward(request, response);
@@ -89,7 +88,6 @@ public class Dispatcher extends HttpServlet {
 				votarView.setVoto(voto);
 				request.setAttribute(action, votarView);
 				view = votarView.process();
-
 			}
 			break;
 		case "incorporarTema":
@@ -103,8 +101,6 @@ public class Dispatcher extends HttpServlet {
 			break;
 		case "eliminarTema":
 			EliminarTemaView eliminarTemaView = new EliminarTemaView();
-			
-			System.out.println("Dispatcher flag: "+request.getParameter("flag"));
 			if ("noAuth".equals(request.getParameter("flag"))) {
 				eliminarTemaView.setCodigo(request.getParameter("codigo"));
 				request.setAttribute(action, eliminarTemaView);
@@ -116,11 +112,8 @@ public class Dispatcher extends HttpServlet {
 				request.setAttribute(action, eliminarTemaView);
 				view = eliminarTemaView.eliminar();
 			}
-			
-			
 			break;
 		}
-
 		this.getServletContext()
 		.getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
 		.forward(request, response);
