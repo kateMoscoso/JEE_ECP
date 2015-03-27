@@ -25,7 +25,7 @@
 				</h1>
 			</div>
 			<div>${eView.update()}</div>
-			<c:if test="${eView.flag <0}">
+			<c:if test="${eView.flag=='noAuth'}">
 				<form action="/Votacion/jsp/eliminarTema" method="post">
 					<div class="form-group">
 						<label for="codigo">Introduce el codigo de validacion:</label> <input
@@ -44,7 +44,7 @@
 					<button type="submit" class="btn btn-primary">Enviar</button>
 				</form>
 			</c:if>
-			<c:if test="${eView.flag >1}">
+			<c:if test="${eView.flag=='Auth'}">
 				<form action="/Votacion/jsp/eliminarTema" method="post">
 					<p>
 						Temas a eliminar: <select name="tema" class="selectpicker">
