@@ -29,7 +29,8 @@
 				<form action="/Votacion/jsp/eliminarTema" method="post">
 					<div class="form-group">
 						<label for="codigo">Introduce el codigo de validacion:</label> <input
-							type="text" name="codigo" value="" />
+							type="hidden" name="flag" value="noAuth" /> <input type="text"
+							name="codigo" value="" />
 
 					</div>
 					<c:if test="${not empty eView.errorMsg}">
@@ -53,7 +54,8 @@
 						</select>
 					</p>
 					<p>
-						<input type="submit" value="Eliminar" />
+						<input type="hidden" name="flag" value="Auth" /> <input
+							type="submit" value="Eliminar" />
 					</p>
 				</form>
 			</c:if>
