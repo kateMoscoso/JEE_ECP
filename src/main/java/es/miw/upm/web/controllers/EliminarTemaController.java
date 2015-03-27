@@ -28,7 +28,7 @@ public class EliminarTemaController extends Controller {
 		}
 		daoTema.deleteById(id);
 	}
-	public boolean comporbarAutorizacion(String codigo){
+	public boolean comprobarAutorizacion(String codigo){
 		return codigo.equals(CODIGO);
 	}
 
