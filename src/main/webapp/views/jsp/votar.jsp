@@ -45,12 +45,6 @@
 							value="${vView.tema.idTema}" /> <br /> ${vView.tema.pregunta}
 					</p>
 					<p>
-						Tu ip es:
-						<%=request.getRemoteHost()%>
-						<input type="hidden" name="ip"
-							value="<%=request.getRemoteHost()%>" />
-					</p>
-					<p>
 						Selecciona tu nivel de estudios: <select name="nivel">
 							<c:forEach var="nivel" items="${vView. nivelEstudios}">
 								<option value="${nivel}">${nivel}</option>

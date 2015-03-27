@@ -81,7 +81,7 @@ public class Dispatcher extends HttpServlet {
 				votarView.setId(Integer.valueOf(request.getParameter("id")));
 				System.out.println("votar");
 				voto = new Voto();
-				voto.setIp(request.getParameter("ip"));
+				voto.setIp(request.getRemoteAddr());
 				voto.setNivelEstudiosType(NivelEstudiosType.valueOf(request
 						.getParameter("nivel")));
 				voto.setValor(Integer.valueOf(request.getParameter("valor")));

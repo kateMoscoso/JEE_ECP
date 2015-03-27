@@ -106,48 +106,23 @@ public class VotarView {
 		puntuacionValores = votarController.obtenerValoresVotacion();
 	}
 
-	public String elegirTema() {
-		String view = "votar";
-		System.out.println("el flag en view es: " + flag);
-		if (this.getId() != null) {
-			tema = votarController.obtenerTema(id);
-			System.out.println("el tema es: " + tema.toString());
-
-			System.out.println("el voto es: " + voto.toString());
-			if (!voto.isEmpty()) {
-				System.out.println("entra voto no es null");
-				HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance()
-						.getExternalContext().getRequest();
-				String ipAddress = request.getHeader("X-FORWARDED-FOR");
-				if (ipAddress == null) {
-					ipAddress = request.getRemoteAddr();
-				}
-				voto.setIp(ipAddress);
-				System.out.println("entra en voto no es empty"+voto.toString());
-				System.out.println("entra process" + tema.toString());
-				votarController.addVoto(tema, voto);
-				view = "home";
-			}
-		}
-		return view;
-	}
 	public String process() {
 		String view = "votar";
 		System.out.println("el flag en view es: " + flag);
 		if (this.getId() != null) {
 			tema = votarController.obtenerTema(id);
 			System.out.println("el tema es: " + tema.toString());
-
 			System.out.println("el voto es: " + voto.toString());
-			if (!voto.isEmpty()) {
+			if (voto.getNivelEstudiosType()!=null) {
 				System.out.println("entra voto no es null");
-				HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance()
-						.getExternalContext().getRequest();
-				String ipAddress = request.getHeader("X-FORWARDED-FOR");
-				if (ipAddress == null) {
+				if (voto.getIp() == null) {
+					HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance()
+							.getExternalContext().getRequest();
+					String ipAddress = request.getHeader("X-FORWARDED-FOR");
 					ipAddress = request.getRemoteAddr();
+					voto.setIp(ipAddress);
 				}
-				voto.setIp(ipAddress);
+				
 				System.out.println("entra en voto no es empty"+voto.toString());
 				System.out.println("entra process" + tema.toString());
 				votarController.addVoto(tema, voto);
