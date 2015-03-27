@@ -106,13 +106,18 @@ public class VotarView {
 		puntuacionValores = votarController.obtenerValoresVotacion();
 	}
 
-	public String process() {
+	public String obtenerDatosTema() {
 		String view = "votar";
-		System.out.println("el flag en view es: " + flag);
 		if (this.getId() != null) {
 			tema = votarController.obtenerTema(id);
 			System.out.println("el tema es: " + tema.toString());
 			System.out.println("el voto es: " + voto.toString());
+		}
+		return view;
+	}
+	public String votarTema() {
+		String view = "votar";
+			tema = votarController.obtenerTema(id);
 			if (voto.getNivelEstudiosType()!=null) {
 				System.out.println("entra voto no es null");
 				if (voto.getIp() == null) {
@@ -122,13 +127,9 @@ public class VotarView {
 					ipAddress = request.getRemoteAddr();
 					voto.setIp(ipAddress);
 				}
-				
-				System.out.println("entra en voto no es empty"+voto.toString());
-				System.out.println("entra process" + tema.toString());
 				votarController.addVoto(tema, voto);
 				view = "home";
 			}
-		}
 		return view;
 	}
 }

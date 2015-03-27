@@ -71,23 +71,20 @@ public class Dispatcher extends HttpServlet {
 			
 			if (Integer.valueOf(request.getParameter("tag")) ==1 ){
 				if(Integer.valueOf(request.getParameter("tema")) != null) {
-					votarView.getTema().setIdTema(Integer.valueOf(request.getParameter("tema")));
+//					votarView.getTema().setIdTema(Integer.valueOf(request.getParameter("tema")));
 					votarView.setId(Integer.valueOf(request.getParameter("tema")));
 					request.setAttribute(action, votarView);
-					view = votarView.process();
+					view = votarView.obtenerDatosTema();
 				}
 			}
 			if (Integer.valueOf(request.getParameter("tag")) == 2) {
 				votarView.setId(Integer.valueOf(request.getParameter("id")));
 				System.out.println("votar");
-				voto = new Voto();
-				voto.setIp(request.getRemoteAddr());
-				voto.setNivelEstudiosType(NivelEstudiosType.valueOf(request
-						.getParameter("nivel")));
-				voto.setValor(Integer.valueOf(request.getParameter("valor")));
+				voto = new Voto(request.getRemoteAddr(),NivelEstudiosType.valueOf(request
+						.getParameter("nivel")),Integer.valueOf(request.getParameter("valor")));
 				votarView.setVoto(voto);
 				request.setAttribute(action, votarView);
-				view = votarView.process();
+				view = votarView.votarTema();
 			}
 			break;
 		case "incorporarTema":
