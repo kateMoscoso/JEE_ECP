@@ -16,7 +16,7 @@ import es.miw.upm.web.controllers.VotarController;
 
 @ManagedBean
 @SessionScoped
-public class VotarView {
+public class VotarView { 
 	private String errorMsg;
 	private Tema tema;
 	private Voto voto;
