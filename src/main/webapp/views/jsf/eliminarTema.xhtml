@@ -14,6 +14,7 @@
 <title>Votaciones</title>
 </head>
 <h:body>
+<f:event listener="#{votarView.update}" type="preRenderComponent"></f:event>
 	<div class="jumbotron">
 		<div class="container">
 			<div class="panel-heading">
@@ -39,7 +40,7 @@
 			<h:form>
 
 				<h:panelGroup rendered="#{not empty eliminarTemaView.codigo}">
-				<f:event listener="#{votarView.update}" type="preRenderComponent"></f:event>
+				
 
 
 <!-- 				<h:panelGroup rendered="#{eliminarTemaView.codigo!=null}"> -->
