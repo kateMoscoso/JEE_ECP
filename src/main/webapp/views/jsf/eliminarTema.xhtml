@@ -35,24 +35,16 @@
 					<h:commandButton value="Enviar"
 						action="#{eliminarTemaView.process}" />
 				</h:panelGroup>
-			</h:form>
-
-			<h:form>
-
 				<h:panelGroup rendered="#{not empty eliminarTemaView.codigo}">
-				
-
-
-<!-- 				<h:panelGroup rendered="#{eliminarTemaView.codigo!=null}"> -->
-
 					<h:selectOneMenu value="#{eliminarTemaView.idtema}">
 						<f:selectItems var="tema" value="#{eliminarTemaView.temas}"
 							itemValue="#{tema.idTema}" itemLabel="#{tema.nombre}" />
 					</h:selectOneMenu>
 					<h:commandButton value="Eliminar" type="submit"
-						action="#{eliminarTemaView.eliminarTema}" />
+						action="#{eliminarTemaView.eliminar}" />
 				</h:panelGroup>
 			</h:form>
+			<h:link value="#{msgs.home}" outcome="home"></h:link>
 		</div>
 	</div>
 

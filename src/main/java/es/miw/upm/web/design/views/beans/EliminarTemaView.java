@@ -3,6 +3,7 @@ package es.miw.upm.web.design.views.beans;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -10,6 +11,7 @@ import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.web.controllers.EliminarTemaController;
 
 @ManagedBean
+@SessionScoped
 public class EliminarTemaView {
 	private String errorMsg;
 	private Integer idtema;
@@ -84,7 +86,8 @@ public class EliminarTemaView {
 		}
 		return view;
 	}
-	public String eliminarTema(){
+	public String eliminar(){
+		System.out.println("Entra en eliminar Tema"+ idtema);
 		eliminarTemaController.eliminarTema(idtema);
 		String view = "home";
 		return view;
