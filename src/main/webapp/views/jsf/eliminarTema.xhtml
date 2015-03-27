@@ -22,30 +22,35 @@
 					<small>Formulario para eliminar un Tema</small>
 				</h1>
 			</div>
-			<h:form id="eliminarTema">
-
-				<h:panelGrid columns="2">
+			<h:form>
+				<h:panelGroup rendered="#{empty eliminarTemaView.codigo}">
 					<p>
 						Código de confirmacion:
 						<h:inputText id="codigo" value="#{eliminarTemaView.codigo}" />
 					</p>
-
+					<h:panelGroup rendered="#{not empty eliminarTemaView.errorMsg}">
+						<p>#{eliminarTemaView.errorMsg}</p>
+					</h:panelGroup>
 					<h:commandButton value="Enviar"
 						action="#{eliminarTemaView.process}" />
-				</h:panelGrid>
+				</h:panelGroup>
 			</h:form>
 
-			<h:form id="eliminarTema">
+			<h:form>
 
-				<h:panelGrid columns="2">
+				<h:panelGroup rendered="#{not empty eliminarTemaView.codigo}">
+				<f:event listener="#{votarView.update}" type="preRenderComponent"></f:event>
 
-					<h:selectOneMenu value="#{eliminarTemaView.tema.temaid}">
-						<f:selectItems value="#{eliminarTemaView.temas}" var="tema"
-							itemValue="#{tema.id}" itemLabel="#{tema.name}" />
+
+<!-- 				<h:panelGroup rendered="#{eliminarTemaView.codigo!=null}"> -->
+
+					<h:selectOneMenu value="#{eliminarTemaView.idtema}">
+						<f:selectItems var="tema" value="#{eliminarTemaView.temas}"
+							itemValue="#{tema.idTema}" itemLabel="#{tema.nombre}" />
 					</h:selectOneMenu>
-					<h:commandButton value="Eliminar"
-						action="#{eliminarTemaView.process}" />
-				</h:panelGrid>
+					<h:commandButton value="Eliminar" type="submit"
+						action="#{eliminarTemaView.eliminarTema}" />
+				</h:panelGroup>
 			</h:form>
 		</div>
 	</div>

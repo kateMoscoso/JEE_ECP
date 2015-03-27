@@ -23,6 +23,7 @@ public class EliminarTemaView {
 	public EliminarTemaView() {
 		eliminarTemaController = new EliminarTemaController();
 		flag = "noAuth";
+		errorMsg ="";
 	}
 
 	public String getErrorMsg() {
