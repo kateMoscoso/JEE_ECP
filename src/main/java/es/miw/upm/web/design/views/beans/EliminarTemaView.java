@@ -18,8 +18,6 @@ public class EliminarTemaView {
 	private List<Tema> temas;
 	private String codigo;
 	private String flag ;
-
-
 	private EliminarTemaController eliminarTemaController;
 
 	public EliminarTemaView() {
@@ -75,7 +73,7 @@ public class EliminarTemaView {
 
 	public String process() {
 		String view = "home";
-		if (!codigo.isEmpty() && eliminarTemaController.comporbarAutorizacion(codigo)) {
+		if (!codigo.isEmpty() && eliminarTemaController.comprobarAutorizacion(codigo)) {
 			view = "eliminarTema";
 			flag = "Auth";
 		}
