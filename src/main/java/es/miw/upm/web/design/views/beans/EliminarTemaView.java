@@ -1,5 +1,6 @@
 package es.miw.upm.web.design.views.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -12,7 +13,8 @@ import es.miw.upm.web.controllers.EliminarTemaController;
 
 @ManagedBean
 @SessionScoped
-public class EliminarTemaView {
+public class EliminarTemaView implements Serializable {
+	 private static final long serialVersionUID = 1L;
 	private String errorMsg;
 	private Integer idtema;
 	private List<Tema> temas;
