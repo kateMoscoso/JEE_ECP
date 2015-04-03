@@ -5,12 +5,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import es.miw.upm.persistence.models.daos.TemaDao;
 import es.miw.upm.persistence.models.entities.Tema;
 
 public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDao {
 
-	// private Logger log = LogManager.getLogger(UserDaoJdbc.class);
+	 private Logger log = LogManager.getLogger(TemaDaoJdbc.class);
 	// sql LONGVARBINARY , java byte[], metodo get apropiado 	InputStream getBinaryStream() 
 	private Tema create(ResultSet resultSet) {
 		Tema tema;
@@ -20,7 +23,7 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
 				return tema;
 			}
 		} catch (SQLException e) {
-			//            log.error("read: " + e.getMessage());
+			            log.error("read: " + e.getMessage());
 		}
 		return null;
 	}

@@ -5,11 +5,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import es.miw.upm.persistence.model.utils.NivelEstudiosType;
 import es.miw.upm.persistence.models.daos.VotoDao;
 import es.miw.upm.persistence.models.entities.Voto;
 
 public class VotoDaoJdbc extends GenericDaoJdbc<Voto, Integer> implements VotoDao {
+	 private Logger log = LogManager.getLogger(VotoDaoJdbc.class);
 
 	private Voto create(ResultSet resultSet) {
 		Voto voto;
@@ -22,7 +26,7 @@ public class VotoDaoJdbc extends GenericDaoJdbc<Voto, Integer> implements VotoDa
 				 return voto;
 			}
 		} catch (SQLException e) {
-			//			log.error("read: " + e.getMessage());
+						log.error("read: " + e.getMessage());
 		}
 		return null;
 	}

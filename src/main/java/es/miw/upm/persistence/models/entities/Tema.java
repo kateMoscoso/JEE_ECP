@@ -83,9 +83,7 @@ public class Tema {
 				+ ", votos=" + votos.toString() + " ]";
 	}
 	
-	public void getMedias(){
-		
-	}
+
 
 
 }

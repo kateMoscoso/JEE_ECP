@@ -3,7 +3,7 @@ package es.miw.upm.persistence.models.daos;
 import java.util.List;
 /**
  * 
- * @author Usuario
+ * @author Katherin Moscoso León
  *
  * @param <T>
  * @param <ID>

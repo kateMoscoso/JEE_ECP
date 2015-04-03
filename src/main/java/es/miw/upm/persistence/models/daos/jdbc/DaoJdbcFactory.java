@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.apache.logging.log4j.LogManager;
 
 import es.miw.upm.persistence.models.daos.DaoFactory;
 import es.miw.upm.persistence.models.daos.TemaDao;
@@ -32,8 +33,8 @@ public class DaoJdbcFactory extends DaoFactory {
 		} catch (ClassNotFoundException e) {
 			System.out.println("no se ha conectado");
 		} catch (SQLException e) {
-			// LogManager.getLogger(DaoJdbcFactory.class).error(
-			// "Problemas con la BD: " + e.getMessage());
+			 LogManager.getLogger(DaoJdbcFactory.class).error(
+			 "Problemas con la BD: " + e.getMessage());
 		}
 		return connection;
 	}
@@ -41,12 +42,7 @@ public class DaoJdbcFactory extends DaoFactory {
 	public static void dropAndCreateTables() {
 		try {
 			Statement statement = getConnection().createStatement();
-//			statement.executeUpdate(String.format(DROP_TABLE, Tema.TABLE));
 			statement.executeUpdate(String.format(DROP_TABLE, Voto.TABLE));
-			// statement.executeUpdate(String.format(DROP_TABLE,
-			// Category.TABLE));
-			// statement.executeUpdate(CategoryDaoJdbc.sqlToCreateTable());
-//			statement.executeUpdate(TemaDaoJdbc.sqlToCreateTable());
 			statement.executeUpdate(VotoDaoJdbc.sqlToCreateTable());
 		} catch (SQLException e) {
 			System.out.println("error");

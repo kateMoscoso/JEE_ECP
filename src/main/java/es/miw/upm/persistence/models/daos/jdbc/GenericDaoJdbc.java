@@ -4,6 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import es.miw.upm.persistence.models.daos.GenericDao;
 
 
@@ -18,17 +21,17 @@ public abstract class GenericDaoJdbc<T, ID> implements GenericDao<T, ID> {
 
     protected static final String SQL_SELECT_LAST_ID = "SELECT LAST_INSERT_ID()";
 
-//    private Logger log = LogManager.getLogger(GenericDaoJdbc.class);
+    private Logger log = LogManager.getLogger(GenericDaoJdbc.class);
 
     public ResultSet query(String sql) {
         try {
             Statement statement = DaoJdbcFactory.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
-//            this.log.debug("Query: " + sql);
+            this.log.debug("Query: " + sql);
             return resultSet;
         } catch (SQLException e) {
-//            this.log.error("Query SQL: ---" + sql + "---");
-//            this.log.error(e.getMessage());
+            this.log.error("Query SQL: ---" + sql + "---");
+            this.log.error(e.getMessage());
         }
         return null;
     }
@@ -37,10 +40,10 @@ public abstract class GenericDaoJdbc<T, ID> implements GenericDao<T, ID> {
         try {
             Statement statement = DaoJdbcFactory.getConnection().createStatement();
             statement.executeUpdate(sql);
-//            this.log.debug("UpdateSql: " + sql);
+            this.log.debug("UpdateSql: " + sql);
         } catch (SQLException e) {
-//            this.log.error("Update SQL: ---" + sql + "---");
-//            this.log.error(e.getMessage());
+            this.log.error("Update SQL: ---" + sql + "---");
+            this.log.error(e.getMessage());
         }
     }
 
@@ -50,8 +53,8 @@ public abstract class GenericDaoJdbc<T, ID> implements GenericDao<T, ID> {
             resulSet.next();
             return resulSet.getInt(1);
         } catch (SQLException e) {
-//            this.log.error("Query SQL: ---" + SQL_SELECT_LAST_ID + "---");
-//            this.log.error(e.getMessage());
+            this.log.error("Query SQL: ---" + SQL_SELECT_LAST_ID + "---");
+            this.log.error(e.getMessage());
         }
         return -1;
     }
