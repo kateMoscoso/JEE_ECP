@@ -2,6 +2,8 @@ package es.miw.upm.web.design.views.beans;
 
 import javax.faces.bean.ManagedBean;
 
+import org.apache.logging.log4j.LogManager;
+
 import es.miw.upm.persistence.models.entities.Tema;
 import es.miw.upm.web.controllers.IncorporarTemaController;
 @ManagedBean
@@ -30,6 +32,7 @@ public class IncorporarTemaView {
 
 	public String process() {
 		incorporarTemaController.incorporarTema(tema);
+		LogManager.getLogger(IncorporarTemaView.class).info("Se va a añadir el tema: "+ tema.getNombre());
 		return "home";
 	}
 }

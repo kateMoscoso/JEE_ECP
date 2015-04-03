@@ -119,6 +119,7 @@ public class VotarView {
 					voto.setIp(votarController.obtenerIP());
 				}
 				votarController.addVoto(tema, voto);
+				LogManager.getLogger(VotarView.class).info("Se va a votar el tema: "+ tema.getNombre());
 				view = "home";
 			}
 		return view;

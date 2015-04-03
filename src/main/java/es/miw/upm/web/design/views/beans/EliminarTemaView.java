@@ -2,6 +2,7 @@ package es.miw.upm.web.design.views.beans;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -78,6 +79,7 @@ public class EliminarTemaView implements Serializable {
 		if (!codigo.isEmpty() && eliminarTemaController.comprobarAutorizacion(codigo)) {
 			view = "eliminarTema";
 			flag = "Auth";
+			LogManager.getLogger(EliminarTemaView.class).info("Código introducido: " + codigo);
 		}
 		else {
 			errorMsg ="Valor introducido incorrectamente";
@@ -87,7 +89,7 @@ public class EliminarTemaView implements Serializable {
 		return view;
 	}
 	public String eliminar(){
-		System.out.println("Entra en eliminar Tema"+ idtema);
+		LogManager.getLogger(EliminarTemaView.class).info("Se va a eliminar el tema con id: "+ idtema);
 		eliminarTemaController.eliminarTema(idtema);
 		String view = "home";
 		return view;

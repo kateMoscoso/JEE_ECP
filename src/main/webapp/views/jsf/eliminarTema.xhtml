@@ -14,7 +14,8 @@
 <title>#{msgs.votaciones}</title>
 </head>
 <h:body>
-<f:event listener="#{eliminarTemaView.update}" type="preRenderComponent"></f:event>
+	<f:event listener="#{eliminarTemaView.update}"
+		type="preRenderComponent"></f:event>
 	<div class="jumbotron">
 		<div class="container">
 			<div class="panel-heading">
@@ -23,18 +24,23 @@
 					<small>#{msgs.formEliminarTema}</small>
 				</h1>
 			</div>
-			<h:form >
+			<h:form>
 				<h:panelGroup rendered="#{empty eliminarTemaView.codigo}">
 					<p>
 						#{msgs.codigo}
 						<h:inputText id="codigo" value="#{eliminarTemaView.codigo}" />
+
 					</p>
 					<h:panelGroup rendered="#{not empty eliminarTemaView.errorMsg}">
-						<p>#{eliminarTemaView.errorMsg}</p>
+						<div class="alert alert-danger" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign"
+								aria-hidden="true"></span> <span class="sr-only">Error:</span>
+							#{eliminarTemaView.errorMsg}
+						</div>
 					</h:panelGroup>
-					<h:commandButton value="Enviar"
-						>
-						<f:ajax execute="@this" render="codigo" />
+					<h:commandButton value="Enviar" id="enviar"
+						action="#{eliminarTemaView.process}">
+						<f:ajax execute="@this" render="codigo enviar" />
 					</h:commandButton>
 				</h:panelGroup>
 			</h:form>
@@ -44,6 +50,7 @@
 						<f:selectItems var="tema" value="#{eliminarTemaView.temas}"
 							itemValue="#{tema.idTema}" itemLabel="#{tema.nombre}" />
 					</h:selectOneMenu>
+					<br />
 					<h:commandButton value="#{msgs.eliminarTema}" type="submit"
 						action="#{eliminarTemaView.eliminar}" />
 				</h:panelGroup>
