@@ -108,8 +108,6 @@ public class VotarView {
 		String view = "votar";
 		if (this.getId() != null) {
 			tema = votarController.obtenerTema(id);
-			System.out.println("el tema es: " + tema.toString());
-			System.out.println("el voto es: " + voto.toString());
 		}
 		return view;
 	}
@@ -117,7 +115,6 @@ public class VotarView {
 		String view = "votar";
 			tema = votarController.obtenerTema(id);
 			if (voto.getNivelEstudiosType()!=null) {
-				System.out.println("entra voto no es null");
 				if (voto.getIp() == null) {
 					voto.setIp(votarController.obtenerIP());
 				}

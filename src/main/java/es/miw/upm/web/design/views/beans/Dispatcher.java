@@ -27,7 +27,6 @@ public class Dispatcher extends HttpServlet {
 		String view;
 		switch (action) {
 		case "votar":
-			System.out.println("votar get");
 			VotarView votarView = new VotarView();
 			request.setAttribute(action, votarView);
 			view = action;
@@ -66,12 +65,9 @@ public class Dispatcher extends HttpServlet {
 		Voto voto;
 		switch (action) {
 		case "votar":
-			VotarView votarView = new VotarView();
-			System.out.println("El tag: "+request.getParameter("tag"));
-			
+			VotarView votarView = new VotarView();			
 			if (Integer.valueOf(request.getParameter("tag")) ==1 ){
 				if(Integer.valueOf(request.getParameter("tema")) != null) {
-//					votarView.getTema().setIdTema(Integer.valueOf(request.getParameter("tema")));
 					votarView.setId(Integer.valueOf(request.getParameter("tema")));
 					request.setAttribute(action, votarView);
 					view = votarView.obtenerDatosTema();
@@ -79,7 +75,6 @@ public class Dispatcher extends HttpServlet {
 			}
 			if (Integer.valueOf(request.getParameter("tag")) == 2) {
 				votarView.setId(Integer.valueOf(request.getParameter("id")));
-				System.out.println("votar");
 				voto = new Voto(request.getRemoteAddr(),NivelEstudiosType.valueOf(request
 						.getParameter("nivel")),Integer.valueOf(request.getParameter("valor")));
 				votarView.setVoto(voto);
@@ -89,9 +84,7 @@ public class Dispatcher extends HttpServlet {
 			break;
 		case "incorporarTema":
 			IncorporarTemaView incorporarTemaView = new IncorporarTemaView();
-			tema = new Tema();
-			tema.setNombre(request.getParameter("nombre"));
-			tema.setPregunta(request.getParameter("pregunta"));
+			tema = new Tema(request.getParameter("nombre"),request.getParameter("pregunta"));
 			incorporarTemaView.setTema(tema);
 			request.setAttribute(action, incorporarTemaView);
 			view = incorporarTemaView.process();

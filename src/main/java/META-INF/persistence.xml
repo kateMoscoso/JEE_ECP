@@ -3,8 +3,6 @@
 	<persistence-unit name="Votacion" transaction-type="RESOURCE_LOCAL">
 	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<!-- Clases de la practica --> 
-		<class>es.miw.upm.persistence.jpa.TemaJpa</class>
-		<class>es.miw.upm.persistence.jpa.VotoJpa</class>
 		<class>es.miw.upm.persistence.models.entities.Tema</class>
 		<class>es.miw.upm.persistence.models.entities.Voto</class>
 		<properties>

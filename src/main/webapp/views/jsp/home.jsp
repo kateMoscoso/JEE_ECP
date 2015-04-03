@@ -20,7 +20,7 @@
 			<div class="panel-heading">
 				<h1>
 					<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-					Votaciones<small>Bienvenido a la aplicacion de votaciones</small>
+					Votaciones<BR /><small>Bienvenido a la aplicacion de votaciones</small>
 				</h1>
 			</div>
 
